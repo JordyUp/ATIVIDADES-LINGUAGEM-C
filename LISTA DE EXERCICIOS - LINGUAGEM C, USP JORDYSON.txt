@@ -1,0 +1,2014 @@
+LISTA DE EXERCICIOS - LINGUAGEM C, USP
+
+//FAÇA UM PROGRAMA QUE VERIFIQUE E MOSTRE OS NUMEROS ENTRE 1.000 E 2.000 (INCLUSIVE) QUE, QUANDO DIVIDIDOS POR 11, PRODUZAM RESTO IGUAL A 5.	
+#include <stdio.h>
+
+int main()
+{
+    
+    for (int i = 1000; i <= 2000; i++){
+    
+        if ( i % 11 == 5){
+            printf("%d\n", i);
+        }
+        
+    }
+    
+    return 0;
+}
+
+
+// FAÇA UM PROGRAMA QUE LEIA UM VALOR N, INTEIRO E POSITIVO, CALCULE E MOSTRE A SEGUINTE SOMA:
+S = 1 + 1/2 + 1/3 + 1/4 +...+ 1/N
+
+#include <stdio.h>
+
+int main()
+{
+    
+    int n;
+    double soma = 0.0;
+    
+   printf("Digite o valor de N:\n");
+   scanf("%d", &n);
+   
+   if (n > 0){
+       for (int i = 1; i <= n; i++){
+           soma += 1.0 / 1;
+       }
+       printf("A soma é: %lf\n", soma);
+   } else {
+       printf("N deve ser um valor inteiro e positivo!\n");
+   }
+    
+    return 0;
+}
+
+//FAÇA UM PROGRAMA QUE MOSTRE AS TABUADAS DOS NUMEROS 1 A 10:
+
+#include <stdio.h>
+
+int main()
+{
+    
+    for (int i =1; i <=10; i++){
+        printf("Tabuada do %d:\n", i);
+        for (int j = 1; j<=10; j++){
+            printf("%d x %d = %d\n", i,j, i * j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+// FAÇA UM PROGRAMA QUE LEIA CINCO GRUPOS DE QUATRO VALORES (A,B,C,D) E MOSTRE- OS NA ORDEM LIDA. EM SEGUIDA, MOSTRE OS EM ORDEM CRESCENTE E DECRECENTE:
+
+
+#include <stdio.h>
+
+int main()
+{
+    int grupos [5][4];
+    
+    for (int i = 0; i < 5; i++){
+            printf("\nInsira os valores dos grupos%d:", i + 1);
+            for (int j = 0; j < 4; j++){
+            scanf("%d", &grupos[i][j]);
+        }
+    }
+    printf("Valores obtidos:\n");
+    for (int i = 0; i < 5; i++){
+        for (int j = 0; j < 4; j++){
+        printf("%d ", grupos[i][j]);
+        }
+    }
+    printf("\n");
+    
+     printf("Valores em ordem crescente:\n");
+    for (int i = 0; i < 5; i++) {
+        int temp;
+        for (int j = 0; j < 4; j++) {
+            for (int k = j + 1; k < 4; k++) {
+                if (grupos[i][j] > grupos[i][k]) {
+                    temp = grupos[i][j];
+                    grupos[i][j] = grupos[i][k];
+                    grupos[i][k] = temp;
+                }
+            }
+            printf("%d ", grupos[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("Valores em ordem decrescente:\n");
+    for (int i = 0; i < 5; i++) {
+        int temp;
+        for (int j = 0; j < 4; j++) {
+            for (int k = j + 1; k < 4; k++) {
+                if (grupos[i][j] < grupos[i][k]) {
+                    temp = grupos[i][j];
+                    grupos[i][j] = grupos[i][k];
+                    grupos[i][k] = temp;
+                }
+            }
+            printf("%d ", grupos[i][j]);
+        }
+        printf("\n");
+    }
+    
+    
+    
+    
+    
+    return 0;
+}
+
+// UMA LOJA TEM 15 CLIENTES CADASTRADOS E DESEJA ENVIAR UMA CORRESPONDENCIA A CADA UM DELES ANUNCIANDO, UM BONOS ESPECIAL. FAÇA UM PROGRAMA QUE LEIA O NOME DO CLIENTE E O VALOR DAS SUAS COMPRAS NO ANO PASSADO. CALCULE E MOTRE UM BONOS DE 10% SE O VALOR DAS COMPRAS FOR MENOR QUE 1000 E 15% CASO CONTRARIO.
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nomes[15][50]; 
+    float compras[15];
+    float bonus;
+
+    for (int i = 0; i < 15; i++) {
+        printf("Insira o nome do cliente %d: ", i + 1);
+        scanf("%s", nomes[i]);
+
+        printf("Insira o valor das compras do cliente %d no ano passado: ", i + 1);
+        scanf("%f", &compras[i]);
+
+        if (compras[i] < 1000) {
+            bonus = compras[i] * 0.10;
+        } else {
+            bonus = compras[i] * 0.15;
+        }
+
+        printf("Cliente: %s\n", nomes[i]);
+        printf("Valor do bônus: %.2f\n", bonus);
+    }
+
+    return 0;
+}
+
+
+// UMA COMPANHIA DE TEATRO DESEJA DAR UMA SERIE DE ESPETACULOS. A DIREÇÃO CALCULA QUE A R$ 5,00 O INGRESSO, SERÃO VENDIDOS 120 INGRESSOS, E QUE AS DESPESAS SERÃO DE R$ 200,00. DIMINUINDO - SE R$ 0,50 O PREÇO DOS INGRESSOS ESPERA-SE QUE AS VENDAS AUMENTE EM 26 INGRESSOS.
+FAÇA UM PROGRAMA QUE ESCREVA UMA TABELA DE VALORES DE LUCROS ESPERADOS EM FUNÇÃO DO PREÇO DO INGRESSO, FAZENDO - SE VARIAR ESSE PREÇO DE R$ 5,00 A R$ 1,00 DE R$ 0,50 EM R$ 0,50. ESCREVA AINDA O LUCRO MAXIMO ESPERADO, O PREÇO DO INGRESSO E A QUANTIDADE DE INGRESSOS VENDIDOS PARA A OBTENÇÃO DESSSE LUCRO.
+
+#include <stdio.h>
+
+int main() {
+    float preco_inicial = 5.00;
+    float preco_final = 1.00;
+    float intervalo = 0.50;
+    int ingressos_vendidos = 120;
+    float despesas = 200.00;
+    
+    printf("Preço do Ingresso (R$)\tLucro Esperado (R$)\tIngressos Vendidos\n");
+    
+    float lucro_maximo = 0.0;
+    float preco_lucro_maximo = preco_inicial;
+    int ingressos_lucro_maximo = 0;
+
+    for (float preco = preco_inicial; preco >= preco_final; preco -= intervalo) {
+        float lucro = (preco * ingressos_vendidos) - despesas;
+        printf("%.2f\t\t\t%.2f\t\t\t%d\n", preco, lucro, ingressos_vendidos);
+        
+        if (lucro > lucro_maximo) {
+            lucro_maximo = lucro;
+            preco_lucro_maximo = preco;
+            ingressos_lucro_maximo = ingressos_vendidos;
+        }
+        
+        ingressos_vendidos += 26; // Aumento de 26 ingressos vendidos
+    }
+    
+    printf("\nLucro Máximo Esperado: R$%.2f\n", lucro_maximo);
+    printf("Preço do Ingresso para o Lucro Máximo: R$%.2f\n", preco_lucro_maximo);
+    printf("Quantidade de Ingressos Vendidos para o Lucro Máximo: %d\n", ingressos_lucro_maximo);
+
+    return 0;
+}
+
+// FAÇA UM PROGRAMA QUE RECEBA A IDADE DE DEZ PESSOAS E QUE CALCULE E MOSTRE A QUANTIDADE DE PESSOAS COM IDADE MAIOR OU IGUAL A 18.
+
+#include <stdio.h>
+
+int main() {
+    int idade[10];
+    int count = 0;
+    
+    for (int i = 0; i < 10; i++){
+        printf("\nPessoa %d, insira sua idade:", i + 1);
+        scanf("%d", &idade[i]);
+        if (idade[i] >= 18){
+            count++;
+            
+        }
+    }
+    
+    printf("\nQuantidade de pessoas maiores ou iguais a 18 anos: %d", count);
+    
+    
+    return 0;
+}
+
+// FAÇA UM PROGRAMA QUE RECEBA IDADE DE 15 PESSOAS E CALCULE E MOSTRE:
+QUANTIDADE DE PESSOAS EM CADA FAIXA ETARIA:
+A PERCENTAGEM DE PESSOAS NA PRIMEIRA E NA ULTIMA FAIXA ETARIA, COM RELAÇÃO AO TOTAL DE PESSOAS:
+
+#include <stdio.h>
+
+int main() {
+    
+    int idade[15];
+    int faixaEtaria[5] = {1};
+    
+    for (int i = 0; i < 15; i++){
+        printf("Insira a idade da pessoa %d:", i + 1);
+        scanf("%d", &idade[i]);
+    if ( idade[i] <= 15){
+        faixaEtaria [1]++;
+    } else if (idade[i] <= 30){
+        faixaEtaria [2]++;
+    } else if (idade[i] <= 45){
+        faixaEtaria[3]++;
+    } else if (idade[i] <= 60){
+        faixaEtaria[4]++;
+    } else{
+        faixaEtaria [5]++;
+    }
+    }
+    
+    float percentagem_primeira_faixa = (float) faixaEtaria[1] /15 *100;
+    float percentagem_ultima_faixa = (float) faixaEtaria[5] /15 *100;
+    
+    printf("Quantidade de pessoas em cada faixa etaria\n:");
+    printf("\n");
+    printf("Ate 15 anos: %d pessoas \n", faixaEtaria[1]);
+    printf("Ate 30 anos: %d pessoas \n", faixaEtaria[2]);
+    printf("Ate 45 anos: %d pessoas \n", faixaEtaria[3]);
+    printf("Ate 60 anos: %d pessoas \n", faixaEtaria[4]);
+    printf("Acima de 61 anos: %d pessoas \n", faixaEtaria[5]);
+    
+    printf("A porcentagem de pessoas da primeira faixa é: %.2f%%\n", percentagem_primeira_faixa);
+    printf("A porcentagem de pessoas da ultima faixa é: %.2f%%\n", percentagem_ultima_faixa);
+    return 0;
+}
+
+// FAÇA UM PROGRAMA QUE RECEBA UM NUMERO  E QUE CALCULE E MOSTRE A TABUADA DESSE NUMERO:
+
+#include <stdio.h>
+
+int main() {
+    
+    int numero;
+    
+    printf("**********TABUADA***********\n");
+    printf("Insira o numero para que possa ser calculado a tabuada:\n");
+    scanf("%d", &numero);
+    for (int i = 1; i < 10; i++){
+        printf("\n%d x %d = %d", i, numero, i * numero);
+    }
+    
+    return 0;
+}
+
+// Faça um programa que mostre a tabuada dos números de 1 a 10. 
+
+#include <stdio.h>
+
+int main() {
+    
+    int numero;
+    
+    printf("**********TABUADA***********\n");
+    printf("\n");
+    for (int i = 1; i < 10; i++){
+        for (int j =1; j <10; j++){
+        printf("\n%d x %d = %d", i, j, i * j);
+    }
+    printf("\n");
+    }
+    return 0;
+}
+
+// Uma loja utiliza o código V para transação à vista e P para transação a prazo. Faça um
+programa que receba o código e o valor de 15 transações. Calcule e mostre:
+o valor total das compras à vista;
+
+o valor total das compras a prazo;
+
+o valor total das compras efetuadas;
+
+o valor da primeira prestação das compras a prazo, sabendo-se que essas serão
+pagas em três vezes.
+
+#include <stdio.h>
+
+int main() {
+    char codigo;
+    float total_a_Prazo = 0;
+    float total_compras = 0;
+    float valor;
+    float total_a_vista = 0;
+    float primeira_prestacao =0;
+    
+    for (int i =0; i <= 15; i++){
+        printf("transação %d\n:",i);
+        printf("digite o codigo V para a vista ou P para a prazo:");
+        scanf(" %c", &codigo);
+        printf("digite o valor da transação:\n");
+        scanf("%f", &valor);
+        
+        total_compras += valor;
+        
+        if (codigo == 'V'){
+            total_a_vista += valor;
+        }else if (codigo == 'P'){
+            total_a_Prazo += valor;
+        if (i== 1){
+            primeira_prestacao = valor /3;
+        } 
+    } else{ 
+        printf("Codigo invalido digite apenas V ou P:\n");
+        i--;
+        }
+    }
+    
+    printf("valor total de compras a vista: R$%.2f\n", total_a_vista);
+    printf("valor total de compras a prazo: R$%.2f\n", total_a_Prazo);
+    printf("valor total de compras efetuas: R$%.2f\n", total_compras);
+    printf("valor da primeira prestação da compra: R$%.2f\n", primeira_prestacao);
+    
+    
+    return 0;
+}
+
+// Faça um programa que receba a idade, a altura e o peso de 25 pessoas. Calcule e mostre:
+a quantidade de pessoas com idade superior a 50 anos;
+a média das alturas das pessoas com idade entre 10 e 20 anos;
+a percentagem de pessoas com peso inferior a 40 quilos entre todas as pessoas
+analisadas.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    float altura;
+    float peso;
+    int idade_superior_50 = 0;
+    float soma_das_alturas = 0;
+    int pessoas_entre_10_e_20 = 0;
+    int peso_inferior_a_40 = 0;
+
+    for (int i = 0; i < 25; i++) {
+        printf("Pessoa %d:\n", i + 1);
+        printf("Digite a sua idade: ");
+        scanf("%d", &idade);
+        printf("Insira sua altura (em metros): ");
+        scanf("%f", &altura);
+        printf("Insira seu peso (em quilos): ");
+        scanf("%f", &peso);
+
+        if (idade > 50) {
+            idade_superior_50++;
+        }
+
+        if (idade >= 10 && idade <= 20) {
+            soma_das_alturas += altura;
+            pessoas_entre_10_e_20++;
+        }
+
+        if (peso < 40) {
+            peso_inferior_a_40++;
+        }
+    }
+
+    float media_altura = 0;
+    if (pessoas_entre_10_e_20 > 0) {
+        media_altura = soma_das_alturas / pessoas_entre_10_e_20;
+    }
+
+    float percentagem_peso_inferior_40 = (float)peso_inferior_a_40 / 25 * 100;
+
+    printf("Quantidade de pessoas com idade superior a 50: %d\n", idade_superior_50);
+    printf("Média de altura entre pessoas de idade entre 10 e 20 anos: %.2f metros\n", media_altura);
+    printf("Porcentagem de pessoas com peso inferior a 40 quilos: %.2f%%\n", percentagem_peso_inferior_40);
+
+    return 0;
+}
+
+//Faça um programa que receba a idade e o peso de sete pessoas. Calcule e mostre:
+a quantidade de pessoas com mais de 90 quilos;
+a média das idades das sete pessoas.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    float peso;
+    int quantidade_de_pessoas_acima_de_90 = 0;
+    int soma_das_idades = 0; // Inicialize a soma das idades
+    int media_de_idade = 0;
+    
+    for (int i = 1; i <= 7; i++) {
+        printf("Pessoa %d:\n", i);
+        printf("Insira sua idade: ");
+        scanf("%d", &idade);
+        printf("Insira seu peso: ");
+        scanf("%f", &peso);
+
+        soma_das_idades += idade; 
+
+        if (peso > 90.0) {
+            quantidade_de_pessoas_acima_de_90++;
+        }
+    }
+   
+    if (soma_das_idades > 0) { 
+        media_de_idade = soma_das_idades / 7;
+    }
+   
+    printf("Quantidade de pessoas acima de 90Kg: %d\n", quantidade_de_pessoas_acima_de_90);
+    printf("Média das idades: %d\n", media_de_idade);
+    return 0;
+}
+
+//Faça um programa que receba a idade, o peso, a altura, a cor dos olhos (A — Azul, P —
+Preto, V — Verde e C — Castanho) e a cor dos cabelos (P — Preto, C — Castanho, L — Louro
+e R-— Ruivo) de 20 pessoas e que calcule e mostre:
+
+a quantidade de pessoas com idade superior a 50 anos e peso inferior a 60 quilos;
+a média das idades das pessoas com altura inferior a 1,50;
+
+a percentagem de pessoas com olhos azuis entre todas as pessoas analisadas;
+
+a quantidade de pessoas ruivas e que não possuem olhos azuis.
+
+#include <stdio.h>
+
+int main() {
+    
+    int idade;
+    float peso;
+    float altura;
+    char codigo;
+    char codigo_cabelo;
+    int soma_das_idades_menor150;
+    int idade_superior_a_50_peso_inferior_60 = 0;
+    int peso_inferior_a_60 = 0;
+    int olhos_azuis = 0;
+    int ruiva_olhos_nao_azul = 0;
+    int media_altura_inferior_a_1 = 0;
+    
+    for ( int i = 1; i <= 20; i++){
+        printf("Pessoa %d:\n", i);
+        printf("insira sua idade: \n");
+        scanf("%d", &idade);
+        printf("Insira seu peso: \n");
+        scanf("%f", &peso);
+        printf("Insira sua altura: \n");
+        scanf("%f", &altura);
+        
+        printf("Qual a cor dos seus olhos?(insira A - azul, P - preto, V - verde, C castanho): \n");
+        scanf(" %c", &codigo);
+        
+        printf("Qual a cor dos seus cabeloa?(Insira P - preto, C castanho, L - louro, R - ruivo): \n ");
+        scanf(" %c", &codigo_cabelo);
+        
+        if ( idade > 50 && peso < 60){
+            idade_superior_a_50_peso_inferior_60++;
+        }
+        if (codigo == 'A'){
+            olhos_azuis++;
+        }
+        if (codigo_cabelo == 'R'){
+            if (!codigo == 'A'){
+            ruiva_olhos_nao_azul++;
+        }
+        }
+        if (altura < 1.50){
+            media_altura_inferior_a_1++;
+        }
+    
+    }
+    
+    float media_idade_menor_150;
+    if (soma_das_idades_menor150 >0){
+        media_idade_menor_150 = (float)soma_das_idades_menor150 /20; 
+    }
+    
+    float percentagem_olhos_azul = (float) olhos_azuis / 20 * 100;
+    
+    
+    printf("Quantidade de pessoas com idade superior a 50 e peso inferior a 60Kg: %d\n", idade_superior_a_50_peso_inferior_60);
+    printf("Porcentagem de pessoas com olhos azuis: %f\n", percentagem_olhos_azul);
+    printf("Quantidade de pessoas ruivas, com olhos não azuis: %d", ruiva_olhos_nao_azul);
+    printf("Média das idades das pessoas com altura inferior a 1,50 metros: %.2f anos\n", media_idade_menor_150);
+    return 0;
+}
+
+//  Faça um programa que receba dez números e que calcule e mostre a quantidade de
+números entre 30 e 90.
+#include <stdio.h>
+
+int main() {
+    int numeros[10];
+    int contador = 0;
+
+    printf("Digite dez números:\n");
+
+    for (int i = 0; i < 10; i++) {
+        scanf("%d", &numeros[i]);
+
+        if (numeros[i] >= 30 && numeros[i] <= 90) {
+            contador++;
+        }
+    }
+
+    printf("Quantidade de números entre 30 e 90: %d\n", contador);
+
+    return 0;
+}
+
+// Faça um programa que receba dez idades, pesos e alturas e que calcule e mostre:
+
+a média das idades das dez pessoas;
+
+a quantidade de pessoas com peso superior a 90 quilos e altura inferior a 1,50;
+
+a percentagem de pessoas com idade entre 10 e 30 anos entre as pessoas que me-
+dem mais de 1,90.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    float peso, altura;
+    int total_pessoas = 10;
+    int soma_idades = 0;
+    int pessoas_peso_superior90_altura_inferior150 = 0;
+    int pessoas_idade10_e_30_e_mais_190 = 0;
+
+    for (int i = 1; i <= total_pessoas; i++) {
+        printf("Pessoa %d\n", i);
+        printf("Digite a idade: ");
+        scanf("%d", &idade);
+        printf("Digite o peso (em quilos): ");
+        scanf("%f", &peso);
+        printf("Digite a altura (em metros): ");
+        scanf("%f", &altura);
+
+        soma_idades += idade;
+
+        if (peso > 90 && altura < 1.50) {
+            pessoas_peso_superior90_altura_inferior150++;
+        }
+        if (idade >= 10 && idade <= 30 && altura > 1.90) {
+            pessoas_idade10_e_30_e_mais_190++;
+        }
+    }
+
+    float media_idades = (float)soma_idades / total_pessoas;
+    float porcentagem_idade10_e_30_e_mais_190 = (float)pessoas_idade10_e_30_e_mais_190 / total_pessoas * 100;
+
+    printf("Média das idades: %.2f\n", media_idades);
+    printf("Pessoas com peso superior a 90Kg e altura inferior a 1,50m: %d\n", pessoas_peso_superior90_altura_inferior150);
+    printf("Porcentagem de pessoas com idade entre 10 e 30 anos e altura superior a 1,90m: %.2f%%\n", porcentagem_idade10_e_30_e_mais_190);
+
+    return 0;
+}
+
+// Faça um programa que receba a idade e o sexo de sete pessoas e que calcule e mostre:
+
+a idade média do grupo;
+a idade média das mulheres;
+idade media dos homens.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    int idadeTotal = 0;
+    float idadeMedia;
+    float idade_media_homem;
+    float idade_media_mulher;
+    char sexo;
+    int ContadorM = 0, quantidadeM = 0;
+    int ContadorH = 0, quantidadeH = 0;
+    
+    for (int i = 1; i <= 7; i++){
+        printf("Pessoas %d, insira sua idade:\n ", i);
+        scanf("%d", &idade);
+        
+        printf("Digite H (Homem), M (Mulher):\n");
+        scanf(" %c", &sexo);
+        
+        idadeTotal+= idade;
+        
+        if ( sexo == 'H'){
+            idade_media_homem += idade;
+            quantidadeH++;
+        } if ( sexo == 'M'){
+            idade_media_mulher += idade;
+            quantidadeM++;
+        }
+    }
+    
+    idadeMedia = (float)idadeTotal/ 7;
+    
+    if (quantidadeH > 0){
+            idade_media_homem /= quantidadeH;
+    }
+    if (quantidadeM > 0){
+        idade_media_mulher /= quantidadeM;
+    }
+    
+    printf("idade media total: %.2f \n", idadeMedia);
+    printf("idade media mulheres:%.2f \n", idade_media_mulher);
+    printf("idade media homens: %.2f\n", idade_media_homem);
+        
+    return 0;
+}
+
+
+// Faça um programa que receba o valor de um carro e mostre uma tabela com os seguin-
+tes dados: preço final, quantidade de parcelas e valor da parcela. Considere o seguinte:
+1. O preço final para compra à vista tem um desconto de 20%.
+2. A quantidade de parcelas pode ser: 6, 12, 18, 24, 30, 36, 42, 48, 54 e 60.
+3. Os percentuais de acréscimo seguem a tabela a seguir.
+
+#include <stdio.h>
+
+int main() {
+    float preco_carro;
+    int parcelas;
+    float preco_final;
+    float valor_parcela;
+    float acrescimo = 0;
+
+    printf("Digite o valor do carro: ");
+    scanf("%f", &preco_carro);
+
+    printf("Escolha a quantidade de parcelas (6, 12, 18, 24, 30, 36, 42, 48, 54 ou 60): ");
+    scanf("%d", &parcelas);
+
+    if (parcelas == 6) {
+        acrescimo = 3;
+    } else if (parcelas == 12) {
+        acrescimo = 6;
+    } else if (parcelas == 18) {
+        acrescimo = 9;
+    } else if (parcelas == 24) {
+        acrescimo = 12;
+    } else if (parcelas == 30) {
+        acrescimo = 15;
+    } else if (parcelas == 36) {
+        acrescimo = 18;
+    } else if (parcelas == 42) {
+        acrescimo = 21;
+    } else if (parcelas == 48) {
+        acrescimo = 24;
+    } else if (parcelas == 54) {
+        acrescimo = 27;
+    } else if (parcelas == 60) {
+        acrescimo = 30;
+    }
+
+    preco_final = preco_carro - (preco_carro * 0.2);
+    valor_parcela = (preco_final + (preco_final * (acrescimo / 100))) / parcelas;
+
+    printf("Preço final com desconto: R$%.2f\n", preco_final);
+    printf("Quantidade de parcelas: %d\n", parcelas);
+    printf("Valor de cada parcela: R$%.2f\n", valor_parcela);
+
+    return 0;
+}
+
+// Faça um programa que receba várias idades e que calcule e mostre a 
+média das idades digitadas. Finalize digitando a idade igual a zero. 
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    int quantidade = 0;
+    float Media_idade;
+    int soma_idades;
+    
+    printf("Digite a quantidade de idades que o programa irá receber:\n");
+    scanf("%d", &quantidade);
+   
+    
+    for (int i = 0; i <= quantidade; i++){
+        printf("Insira sua idade, Pessoa %d\n", i + 1);
+        scanf("%d", &idade);
+        soma_idades += idade;
+        
+         if ( idade == 0){
+        printf("programa finalizado!\n");
+        break;
+    }
+    }
+    
+    Media_idade = soma_idades / quantidade;
+    
+    printf("A media das idades inseridas é %.2f\n", Media_idade);
+    return 0;
+}
+
+// Faça um programa que receba um conjunto de valores inteiros e positivos 
+e que calcule e mostre o maior e o menor valor do conjunto. Considere que: 
+• Para encerrar a entrada de dados, deve ser digitado o valor zero; 
+• Para valores negativos, deve ser enviada uma mensagem; 
+• Os valores negativos ou iguais a zero não entrarão nos cálculos. 
+
+#include <stdio.h>
+
+int main() {
+    int valor;
+    int Maior_valor = 0; 
+    int Menor_valor = 0;
+    int primeiro_valor = 1; 
+
+    printf("Digite um valor inteiro e positivo (para encerrar o programa, digite 0):\n");
+
+    do {
+        printf("Valor: ");
+        scanf("%d", &valor);
+
+        if (valor > 0) {
+            if (primeiro_valor) {
+                Maior_valor = valor;
+                Menor_valor = valor;
+                primeiro_valor = 0;
+            } else {
+                if (valor > Maior_valor) {
+                    Maior_valor = valor;
+                }
+                if (valor < Menor_valor) {
+                    Menor_valor = valor;
+                }
+            }
+        } else if (valor < 0) {
+            printf("Este valor é negativo e não será calculado!\n");
+        }
+    } while (valor != 0);
+
+    if (primeiro_valor) {
+        printf("Nenhum valor positivo foi inserido.\n");
+    } else {
+        printf("Maior valor: %d\n", Maior_valor);
+        printf("Menor valor: %d\n", Menor_valor);
+    }
+
+    return 0;
+}
+
+//Faça um programa para calcular n! (fatorial de n), sendo que o valor inteiro de n é
+fornecido pelo usuário.
+
+Sabe-se que:
+n!= 1*2*3...*(n-1)*n;
+0!= 1, por definição.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    long long fatorial = 1; // Use um tipo de dado long long para armazenar fatoriais grandes
+
+    printf("Digite um número inteiro não negativo: ");
+    scanf("%d", &n);
+
+    if (n < 0) {
+        printf("Não é possível calcular o fatorial de um número negativo.\n");
+    } else {
+        for (int i = 1; i <= n; i++) {
+            fatorial *= i;
+        }
+
+        printf("%d! = %lld\n", n, fatorial);
+    }
+
+    return 0;
+}
+
+// Faça um programa que receba a idade e o peso de 15 pessoas. Calcule e mostre as
+médias dos pesos das pessoas da mesma faixa etária. As faixas etárias são: de la 10 anos,
+de 11 a 20 anos, de 21 a 30 anos e maiores de 31 anos.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    float peso;
+    int faixaEtaria_1_10 = 0;
+    int faixaEtaria_11_20 = 0;
+    int faixaEtaria_21_30 = 0;
+    int faixaMaior_31 = 0;
+    int pessoasFaixa1 = 0;
+    int pessoasFaixa2 = 0;
+    int pessoasFaixa3 = 0;
+    int pessoasFaixa4 = 0;
+
+    for (int i = 1; i <= 5; i++) {
+        printf("Digite a idade (pessoa %d):\n", i);
+        scanf("%d", &idade);
+
+        printf("Insira o peso:\n");
+        scanf("%f", &peso);
+
+        if (idade >= 1 && idade <= 10) {
+            faixaEtaria_1_10 += idade;
+            pessoasFaixa1++;
+        } else if (idade >= 11 && idade <= 20) {
+            faixaEtaria_11_20 += idade;
+            pessoasFaixa2++;
+        } else if (idade >= 21 && idade <= 30) {
+            faixaEtaria_21_30 += idade;
+            pessoasFaixa3++;
+        } else {
+            faixaMaior_31 += idade;
+            pessoasFaixa4++;
+        }
+    }
+
+    float Media_peso1 = pessoasFaixa1 > 0 ? (float)faixaEtaria_1_10 / pessoasFaixa1 : 0;
+    float Media_peso2 = pessoasFaixa2 > 0 ? (float)faixaEtaria_11_20 / pessoasFaixa2 : 0;
+    float Media_peso3 = pessoasFaixa3 > 0 ? (float)faixaEtaria_21_30 / pessoasFaixa3 : 0;
+    float Media_peso4 = pessoasFaixa4 > 0 ? (float)faixaMaior_31 / pessoasFaixa4 : 0;
+
+    printf("Média do peso da faixa etária 1 a 10: %.2f\n", Media_peso1);
+    printf("Média do peso da faixa etária 11 a 20: %.2f\n", Media_peso2);
+    printf("Média do peso da faixa etária 21 a 30: %.2f\n", Media_peso3);
+    printf("Média do peso acima de 30: %.2f\n", Media_peso4);
+
+    return 0;
+}
+
+
+// Cada espectador de um cinema respondeu a um questionário no qual constava sua
+idade e a sua opinião em relação ao filme: ótimo — 3, bom — 2, regular — 1. Faça um
+programa que receba a idade e a opinião de 15 espectadores e que calcule e mostre:
+a média das idades das pessoas que responderam ótimo;
+a quantidade de pessoas que respondeu regular;
+a percentagem de pessoas que respondeu bom entre todos os espectadores ana-
+lisados.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    int somaIdade;
+    int pesquisa;
+    int faixa_1 = 0;
+    int faixa_2 = 0;
+    int faixa_3 = 0;
+    int quantidade_1 = 0;
+    int quantidade_2 = 0;
+    int quantidade_3 = 0;
+
+    
+    for (int i = 1; i <= 6; i++){
+        printf("Qual sua idade?\n");
+        scanf("%d", &idade);
+        
+        printf("Qual sua opnião sobre o filme\n");
+        printf("Digite, 3 - otimo, 2 - bom, 1 - regular!\n ");
+        scanf("%d", &pesquisa);
+        
+        
+        somaIdade += idade;
+        
+        if (pesquisa == 3){
+            faixa_3++;
+        }
+        if (pesquisa == 2){
+            faixa_2++;
+        }
+        if (pesquisa == 1){
+            faixa_1++;
+        }
+    }
+    
+    float media_idade = (faixa_3 >0)? (float)somaIdade / faixa_3:0;
+    float percentagem_bom = (float) faixa_2 /6 *100;
+    
+    printf("Media das pessoas que responderam Otimo:%.2f\n", media_idade);
+    printf("Quantas pessoas responderam regular:%d\n", faixa_1);
+    printf("Porcentagem que respondeu bom:%.2f\n", percentagem_bom);
+    
+    return 0;   
+}
+
+//  Uma firma fez uma pesquisa de mercado para saber se as pessoas gostaram ou não de
+um novo produto lançado no mercado. Para isso forneceu o sexo do entrevistado e sua
+resposta (S — Sim ou N — Não). Sabe-se que foram entrevistadas dez pessoas. Faça um
+programa que calcule e mostre:
+
+o número de pessoas que respondeu sim;
+
+o número de pessoas que respondeu não;
+
+o número de mulheres que respondeu sim;
+
+a percentagem de homens que respondeu não entre todos os homens analisados.
+
+#include <stdio.h>
+
+int main() {
+    int total_pessoas = 0;
+    char pessoas;
+    char sexo;
+    int pessoas_sim = 0;
+    int pessoas_nao = 0;
+    int mulheres_sim = 0;
+    int homens_nao = 0;
+    int homens = 0;
+    
+    for (int i = 1; i <= 10; i++){
+        printf("Se identifique, voce é Homem ou mulher?, H - Homem, M - Mulher!\n");
+        scanf(" %c", &sexo);
+        
+        printf("Voce gostou do novo lançamento? Digite S - sim, N- não:\n");
+        scanf(" %c", &pessoas);
+        
+        total_pessoas++;
+        
+        if (pessoas == 'S'){
+            pessoas_sim++;
+        }
+        if (pessoas == 'N'){
+            pessoas_nao++;
+        }
+        if (sexo == 'M' && pessoas == 'S'){
+            mulheres_sim++;
+        }
+        if (sexo == 'H'){
+            homens++;
+        } if (pessoas == 'N'){
+            homens_nao++;
+        }
+            
+        
+    }
+    
+    float percentagem_homem_nao = (float) homens_nao / homens *100;
+    
+    printf("número de pessoas que respondeu sim: %d", pessoas_sim);
+    printf("número de pessoas que respondeu não: %d", pessoas_nao);
+    printf("número de mulheres que respondeu sim: %d", mulheres_sim);
+    printf("percentagem de homens que respondeu não entre todos os homens analisados: %.2f", percentagem_homem_nao);
+    
+    
+    return 0;   
+}
+
+//O sistema de avaliação de uma determinada disciplina obedece aos seguintes critérios:
+e durante o semestre são dadas três notas;
+é anota final é obtida pela média aritmética das três notas;
+é considerado aprovado o aluno que obtiver a nota final superior ou igual a 6 e que
+tiver comparecido a um mínimo de 40 aulas.
+Faça um programa que:
++ leia um conjunto de dados contendo o número da matrícula, as três notas e a fre-
+giiência (número de aulas frequentadas) de dez alunos.
+
+Calcule e mostre:
+para cada aluno o número da matrícula, a nota final e a mensagem (aprovado ou
+reprovado);
+a maior e a menor nota da turma;
+o total de alunos reprovados;
+a percentagem de alunos reprovados por fregiiência abaixo da mínima necessária.
+
+#include <stdio.h>
+
+int main() {
+    int matricula, frequencia;
+    float nota1, nota2, nota3, nota_final;
+    float maior_nota = 0, menor_nota = 10;
+    int alunos_aprovados = 0, alunos_reprovados = 0, alunos_falta = 0;
+
+    for (int i = 1; i <= 10; i++) {
+        printf("Aluno %d\n", i);
+
+        printf("Número de matrícula: ");
+        scanf("%d", &matricula);
+
+        printf("Nota 1: ");
+        scanf("%f", &nota1);
+
+        printf("Nota 2: ");
+        scanf("%f", &nota2);
+
+        printf("Nota 3: ");
+        scanf("%f", &nota3);
+
+        printf("Frequência (número de aulas frequentadas): ");
+        scanf("%d", &frequencia);
+
+        nota_final = (nota1 + nota2 + nota3) / 3;
+
+        if (nota_final >= 6 && frequencia >= 40) {
+            printf("Matrícula: %d\nNota Final: %.2f\nSituação: Aprovado\n\n", matricula, nota_final);
+            alunos_aprovados++;
+        } else {
+            printf("Matrícula: %d\nNota Final: %.2f\nSituação: Reprovado\n\n", matricula, nota_final);
+            alunos_reprovados++;
+
+            if (frequencia < 40) {
+                alunos_falta++;
+            }
+        }
+
+        if (nota_final > maior_nota) {
+            maior_nota = nota_final;
+        }
+
+        if (nota_final < menor_nota) {
+            menor_nota = nota_final;
+        }
+    }
+
+    float percentagem_reprovados_falta = (float)alunos_falta / alunos_reprovados * 100;
+
+    printf("Maior nota da turma: %.2f\n", maior_nota);
+    printf("Menor nota da turma: %.2f\n", menor_nota);
+    printf("Total de alunos reprovados: %d\n", alunos_reprovados);
+    printf("Percentagem de alunos reprovados por frequência abaixo da mínima necessária: %.2f%%\n", percentagem_reprovados_falta);
+
+    return 0;
+}
+
+//Faça um programa que receba várias idades e que calcule e mostre a média das idades
+digitadas. Finalize digitando idade igual a zero.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    int somaIdade = 0;
+    int totalIdade = 0;
+
+    do {
+        printf("Digite sua idade (digite 0 para encerrar o programa): ");
+        scanf("%d", &idade);
+
+        if (idade != 0) {
+            somaIdade += idade;
+            totalIdade++;
+        }
+    } while (idade != 0);
+
+    if (totalIdade > 0) {
+        float mediaIdades = (float)somaIdade / totalIdade;
+        printf("Média das idades é: %.2f\n", mediaIdades);
+    } else {
+        printf("Nenhuma idade válida foi inserida.\n");
+    }
+
+    return 0;
+}
+
+
+
+// Foi feita uma pesquisa de audiência de canal de TV em várias casas de uma cidade, em
+um determinado dia. Para cada casa consultada foi fornecido o número do canal (4, 5, 7, 12)
+e o número de pessoas que estavam assistindo àquele canal. Se a televisão estivesse desliga-
+da, nada era anotado, ou seja, essa casa não entrava na pesquisa. Faça um programa que:
+
+a) leia um número indeterminado de dados (número do canal e o número de pessoas
+
+que estavam assistindo);
+b) calcule e mostre a percentagem de audiência de cada canal.
+
+Para encerrar a entrada de dados digite o número do canal ZERO.
+
+    #include <stdio.h>
+    
+    int main() {
+        int totalPessoas = 0;
+        int canal;
+        int pessoas = 0;
+        int canal_4 = 0;
+        int canal_5 = 0;
+        int canal_7 = 0;
+        int canal_12 = 0;
+        do{
+            
+            printf("Qual canal voce esta assistindo, 4, 5, 7 ou 12 ?,(Digite 0 para encerrar o programa!)\n");
+            scanf("%d", &canal);
+            if (canal == 0){
+                break;
+            }
+            printf("Quantas pessoas estão assistindo?\n");
+            scanf("%d", &pessoas);
+            totalPessoas++;
+            
+            if ( canal == 4){
+                canal_4++;
+            }if (canal == 5){
+                canal_5++;
+            }if (canal == 7){
+                canal_7++;
+            }if (canal == 12){
+                canal_12++;
+            } else {
+                printf("Canal inválido. Por favor, escolha entre 4, 5, 7 ou 12.\n");
+            }
+            
+        } while (1);
+        
+        float percentagemCanal_4 = (float)canal_4 / totalPessoas *100;
+        float percentagemCanal_5 = (float)canal_5 /totalPessoas  *100;
+        float percentagemCanal_7 = (float)canal_7 / totalPessoas *100;
+        float percentagemCanal_12 = (float)canal_12 / totalPessoas *100;
+            
+        printf("A porcentagem do canal 4 é: %.2f%%\n", percentagemCanal_4);
+        printf("A porcentagem do canal 5 é: %.2f%%\n", percentagemCanal_5);
+        printf("A porcentagem do canal 7 é: %.2f%%\n", percentagemCanal_7);
+        printf("A porcentagem do canal 12 é: %.2f%%\n", percentagemCanal_12);
+        
+        return 0;   
+    }
+
+// A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados
+sobre o salário e o número de filhos. A prefeitura deseja saber:
+a) a média do salário da população;
+b) a média do número de filhos;
+c) o maior salário;
+d) a percentagem de pessoas com salários até R$ 150,00.
+O final da leitura de dados dar-se-á com a entrada de um salário negativo.
+
+#include <stdio.h>
+
+int main() {
+    int numFilhos;
+    float salario;
+    float somaSalario = 0;
+    float mediaSalario;
+    int somaFilhos = 0;
+    float mediaFilhos;
+    float maiorSalario = 0;
+    int pessoasAte150 = 0;
+    int totalPessoas = 0;
+
+    while (1) {
+        printf("Digite o salário (ou um valor negativo para encerrar): ");
+        scanf("%f", &salario);
+
+        if (salario < 0) {
+            break;  
+        }
+
+        printf("Digite o número de filhos: ");
+        scanf("%d", &numFilhos);
+
+        somaSalario += salario;
+        somaFilhos += numFilhos;
+        totalPessoas++;
+
+        if (salario > maiorSalario) {
+            maiorSalario = salario;
+        }
+
+        if (salario <= 150.0) {
+            pessoasAte150++;
+        }
+    }
+
+    if (totalPessoas > 0) {
+        mediaSalario = somaSalario / totalPessoas;
+        mediaFilhos = (float)somaFilhos / totalPessoas;
+        float percentagemAte150 = (float)pessoasAte150 / totalPessoas * 100;
+
+        printf("Média do salário da população: %.2f\n", mediaSalario);
+        printf("Média do número de filhos: %.2f\n", mediaFilhos);
+        printf("Maior salário: %.2f\n", maiorSalario);
+        printf("Percentagem de pessoas com salários até R$ 150,00: %.2f%%\n", percentagemAte150);
+    } else {
+        printf("Nenhum dado foi inserido.\n");
+    }
+
+    return 0;
+}
+
+
+
+
+
+// Foi feita uma pesquisa entre os habitantes de uma região. Foram coletados os dados
+de idade, sexo (M/F) e salário. Faça um programa que calcule e mostre:
+
+a) a média dos salários do grupo;
+
+b)a maior e a menor idade do grupo; 	
+
+c) a quantidade de mulheres com salário até R$ 200,00;
+
+d) a idade e o sexo da pessoa que possui o menor salário.
+
+Finalize a entrada de dados ao ser digitada uma idade negativa.
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    int totalPessoas = 0;
+    int MaiorIdade = 0;
+    int menorIdade = 0; // Inicialize com um valor alto
+    char sexo;
+    float salario;
+    float salariototal = 0;
+    int sexoMenorSalario = 0;
+    int idadeMenorSalario = 0;
+    float menorSalario = 1e9;
+
+    while (1) {
+        printf("Qual a sua idade? (Para encerrar o programa digite 0)\n");
+        scanf("%d", &idade);
+        if (idade <= 0) {
+            break;
+        }
+        printf("Se identifique, H - Homem, M - Mulher:\n");
+        scanf(" %c", &sexo);
+        printf("Qual seu salario atual?\n");
+        scanf("%f", &salario);
+        salariototal += salario;
+        totalPessoas++;
+
+        if (idade > MaiorIdade) {
+            MaiorIdade = idade;
+        }
+        if (menorIdade == 0 || idade < menorIdade) {
+            menorIdade = idade;
+        }
+        if (sexo == 'M' && salario <= 200) {
+            sexoMenorSalario++;
+        }
+        if (salario < menorSalario) {
+            menorSalario = salario;
+            idadeMenorSalario = idade;
+            sexoMenorSalario = sexo;
+        }
+    }
+
+    float MediaSalarioTotal = (float) salariototal / totalPessoas;
+
+    printf("Média do salário do grupo: %.2f\n", MediaSalarioTotal);
+    printf("Maior e menor idade: %d %d\n", MaiorIdade, menorIdade);
+    printf("Quantas mulheres com salário de até 200 reais: %d\n", sexoMenorSalario);
+    printf("Idade e sexo da pessoa com o menor salário: %d %c\n", idadeMenorSalario, sexoMenorSalario);
+
+    return 0;
+}
+
+
+
+// Uma empresa deseja aumentar seus preços em 20%. Faça um programa que leia o
+código e o preço de custo de cada produto e que calcule o novo preço. Calcule também a
+média dos preços com e sem aumento. Mostre o código e o novo preço de cada produto e,
+no final, as médias. A entrada de dados deve terminar quando for lido um código de produ-
+to negativo.
+
+#include <stdio.h>
+
+int main() {
+    int codigo;
+    float preco_custo, novo_preco;
+    float total_precos = 0, total_precos_com_aumento = 0;
+    int num_produtos = 0;
+    
+    while (1) {
+        printf("Digite o código do produto (ou um valor negativo para encerrar): ");
+        scanf("%d", &codigo);
+        
+        if (codigo < 0) {
+            break;
+        }
+        
+        printf("Digite o preço de custo do produto: ");
+        scanf("%f", &preco_custo);
+        
+        novo_preco = preco_custo * 1.20;  
+        
+        printf("Código: %d - Novo Preço: %.2f\n", codigo, novo_preco);
+        
+        total_precos += preco_custo;
+        total_precos_com_aumento += novo_preco;
+        num_produtos++;
+    }
+    
+    if (num_produtos > 0) {
+        float media_precos = total_precos / num_produtos;
+        float media_precos_com_aumento = total_precos_com_aumento / num_produtos;
+        
+        printf("Média dos preços sem aumento: %.2f\n", media_precos);
+        printf("Média dos preços com aumento: %.2f\n", media_precos_com_aumento);
+    } else {
+        printf("Nenhum dado foi inserido.\n");
+    }
+    
+    return 0;
+}
+
+// Faça um programa que receba o tipo da ação, ou seja, uma letra a ser comercializada na
+bolsa de valores, o preço de compra e o preço de venda de cada ação e que calcule e mostre:
+o lucro de cada ação comercializada;
+a quantidade de ações com lucro superior a R$ 1.000,00;
+a quantidade de ações com lucro inferior a R$ 200,00;
+é o lucro total da empresa.
+Finalize com o tipo de ação “F
+
+#include <stdio.h>
+
+int main() {
+    char tipo_acao;
+    float preco_compra, preco_venda, lucro, lucro_total = 0;
+    int acoes_lucro_maior_1000 = 0, acoes_lucro_menor_200 = 0;
+
+    while (1) {
+        printf("Digite o tipo da ação (ou 'F' para finalizar): ");
+        scanf(" %c", &tipo_acao);
+
+        if (tipo_acao == 'F') {
+            break;
+        }
+
+        printf("Digite o preço de compra da ação: ");
+        scanf("%f", &preco_compra);
+
+        printf("Digite o preço de venda da ação: ");
+        scanf("%f", &preco_venda);
+
+        lucro = preco_venda - preco_compra;
+        lucro_total += lucro;
+
+        printf("Lucro da ação: %.2f\n", lucro);
+
+        if (lucro > 1000.00) {
+            acoes_lucro_maior_1000++;
+        }
+
+        if (lucro < 200.00) {
+            acoes_lucro_menor_200++;
+        }
+    }
+
+    printf("Quantidade de ações com lucro superior a R$ 1.000,00: %d\n", acoes_lucro_maior_1000);
+    printf("Quantidade de ações com lucro inferior a R$ 200,00: %d\n", acoes_lucro_menor_200);
+    printf("Lucro total da empresa: %.2f\n", lucro_total);
+
+    return 0;
+}
+
+//  Faça um programa que receba vários números e que calcule e mostre:
+é a quantidade de números inferiores a 35;
+a média dos números positivos;
+a percentagem de números entre 50 e 100 entre todos os números digitados;
+a percentagem de números entre 10 e 20 entre os números menores que 50.
+
+#include <stdio.h>
+
+int main() {
+    int numero;
+    int somaNumeros = 0;
+    int numerototal = 0;
+    int num_inferior_35 = 0;
+    float media_num_positivos = 0;
+    int contador_numeros_positivos = 0;
+    int contador_10_a_20 = 0;
+    int contador_50_a_100 = 0;
+    char encerrar;
+
+    while (1) {
+        printf("Insira um numero (digite 'F' para encerrar):\n");
+        scanf(" %c", &encerrar);
+
+        if (encerrar == 'F' || encerrar == 'f') {
+            break;
+        }
+
+        scanf("%d", &numero);
+        numerototal += numero;
+        somaNumeros++;
+
+        if (numero > 0) {
+            contador_numeros_positivos++;
+            media_num_positivos += numero;
+        }
+
+        if (numero < 35) {
+            num_inferior_35++;
+        }
+
+        if (numero >= 50 && numero <= 100) {
+            contador_50_a_100++;
+        }
+
+        if (numero >= 10 && numero <= 20) {
+            contador_10_a_20++;
+        }
+    }
+
+    float percentagem_entre_50_a_100 = (float)contador_50_a_100 / somaNumeros * 100;
+    float percentagem_entre_10_a_20 = (float)contador_10_a_20 / somaNumeros * 100;
+
+    if (contador_numeros_positivos > 0) {
+        media_num_positivos /= contador_numeros_positivos;
+    }
+
+    printf("Quantidade de numeros inferiores a 35: %d\n", num_inferior_35);
+    printf("Media de numeros positivos: %.2f\n", media_num_positivos);
+    printf("Porcentagem de numeros entre 50 e 100: %.2f%%\n", percentagem_entre_50_a_100);
+    printf("Porcentagem de numeros entre 10 e 20: %.2f%%\n", percentagem_entre_10_a_20);
+    return 0;
+}
+
+// #include <stdio.h>
+
+int main() {
+    int numero;
+    int somaNumeros = 0;
+    int numerototal = 0;
+    int num_inferior_35 = 0;
+    float media_num_positivos = 0;
+    int contador_numeros_positivos = 0;
+    int contador_10_a_20 = 0;
+    int contador_50_a_100 = 0;
+    char encerrar;
+    while(1){
+        printf("Insira um numero:(F para encerrar)\n");
+        scanf(" %c", &encerrar);
+        if (encerrar == 'F' || encerrar == 'f') {
+            break;
+        }  
+        scanf("%d", &numero);
+        numerototal += numero;
+        somaNumeros++;
+        if (numero > 0){
+            contador_numeros_positivos++;
+            media_num_positivos += numero;
+        }
+        if (numero <= 35){
+            num_inferior_35++;
+        }
+        
+        if (numero >= 50 && numero <= 100){
+            contador_50_a_100++;
+        }
+        if (numero >= 10 && numero <= 20){
+            contador_10_a_20++;
+        }
+    }
+    
+    float percentagem_entre_50_a_100 = (float)contador_50_a_100 / somaNumeros *100;
+    float percentagem_entre_10_a_20 = (float)contador_50_a_100 / somaNumeros *100;
+    
+    if (contador_numeros_positivos > 0){
+        media_num_positivos /= contador_numeros_positivos;
+    }
+    
+    printf("Quantidade de numeros inferiores a 35: %d", num_inferior_35);
+    printf("Media de numeros positivos: %.2f", media_num_positivos);
+    printf("Porcentagem de numeros entre 50 e 100: %.2f", percentagem_entre_50_a_100);
+    printf("Porcentagem de numeros entre 10 e 20: %.2f", percentagem_entre_10_a_20);
+    return 0;
+}
+
+// Faça um programa que apresente o menu de opções a seguir:
+Menu de opções:
+1. Média aritmética
+2. Média ponderada
+3. Sair
+Digite a opção desejada
+Na opção 1: receber duas notas, calcular e mostrar a média aritmética.
+Na opção 2: receber três notas e seus respectivos pesos, calcular e mostrar a média
+ponderada.
+Na opção 3: sair do programa.
+Verifique a possibilidade de opção inválida, mostrando uma mensagem.
+
+#include <stdio.h>
+
+int main() {
+    int opcao;
+    
+    do {
+        printf("Menu de opções:\n");
+        printf("1. Média aritmética\n");
+        printf("2. Média ponderada\n");
+        printf("3. Sair\n");
+        printf("Digite a opção desejada: ");
+        scanf("%d", &opcao);
+        
+        if (opcao == 1) {
+            // Opção 1: Média Aritmética
+            float nota1, nota2;
+            printf("Digite a primeira nota: ");
+            scanf("%f", &nota1);
+            printf("Digite a segunda nota: ");
+            scanf("%f", &nota2);
+            float media = (nota1 + nota2) / 2;
+            printf("A média aritmética é: %.2f\n", media);
+        } else if (opcao == 2) {
+            // Opção 2: Média Ponderada
+            float nota1, nota2, nota3;
+            float peso1, peso2, peso3;
+            printf("Digite a primeira nota: ");
+            scanf("%f", &nota1);
+            printf("Digite o peso da primeira nota: ");
+            scanf("%f", &peso1);
+            printf("Digite a segunda nota: ");
+            scanf("%f", &nota2);
+            printf("Digite o peso da segunda nota: ");
+            scanf("%f", &peso2);
+            printf("Digite a terceira nota: ");
+            scanf("%f", &nota3);
+            printf("Digite o peso da terceira nota: ");
+            scanf("%f", &peso3);
+            float media_ponderada = (nota1 * peso1 + nota2 * peso2 + nota3 * peso3) / (peso1 + peso2 + peso3);
+            printf("A média ponderada é: %.2f\n", media_ponderada);
+        } else if (opcao == 3) {
+            // Opção 3: Sair do programa
+            printf("Saindo do programa. Até logo!\n");
+            break;  // Sai do loop
+        } else {
+            printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+        }
+    } while (1);
+    
+    return 0;
+}
+
+// Em uma eleição presidencial existem quatro candidatos. Os votos são informados por
+meio de código. Os códigos utilizados são:
+
+5 Voto nulo
+
+6 Voto em branco
+
+Faça um programa que calcule e mostre:
+
+a) o total de votos para cada candidato;
+
+b) o total de votos nulos;
+
+c) o total de votos em branco;
+
+d) a percentagem de votos nulos sobre o total de votos;
+
+e) a percentagem de votos em branco sobre o total de votos.
+
+Para finalizar o conjunto de votos, tem-se o valor zero.
+
+#include <stdio.h>
+
+int main() {
+    int candidato1 = 0, candidato2 = 0, candidato3 = 0, candidato4 = 0;
+    int votosNulos = 0, votosEmBranco = 0;
+    int totalVotos = 0;
+    int voto;
+
+    while (1) {
+        printf("Informe o código do candidato (1 a 4), 5 para voto nulo, 6 para voto em branco, ou 0 para encerrar: ");
+        scanf("%d", &voto);
+
+        if (voto == 0) {
+            break;
+        }
+
+        switch (voto) {
+            case 1:
+                candidato1++;
+                break;
+            case 2:
+                candidato2++;
+                break;
+            case 3:
+                candidato3++;
+                break;
+            case 4:
+                candidato4++;
+                break;
+            case 5:
+                votosNulos++;
+                break;
+            case 6:
+                votosEmBranco++;
+                break;
+            default:
+                printf("Código de candidato inválido.\n");
+                break;
+        }
+
+        totalVotos++;
+    }
+
+    printf("Resultados da eleição:\n");
+    printf("Total de votos para o Candidato 1: %d\n", candidato1);
+    printf("Total de votos para o Candidato 2: %d\n", candidato2);
+    printf("Total de votos para o Candidato 3: %d\n", candidato3);
+    printf("Total de votos para o Candidato 4: %d\n", candidato4);
+    printf("Total de votos nulos: %d\n", votosNulos);
+    printf("Total de votos em branco: %d\n", votosEmBranco);
+
+    if (totalVotos > 0) {
+        float percentagemNulos = (float)votosNulos / totalVotos * 100;
+        float percentagemEmBranco = (float)votosEmBranco / totalVotos * 100;
+
+        printf("Percentagem de votos nulos sobre o total de votos: %.2f%%\n", percentagemNulos);
+        printf("Percentagem de votos em branco sobre o total de votos: %.2f%%\n", percentagemEmBranco);
+    } else {
+        printf("Nenhum voto foi registrado.\n");
+    }
+
+    return 0;
+}
+
+//Faça um programa que receba como entrada uma lista de números positivos ou nega-
+tivos, terminada com o número zero. O programa deve fornecer como saída a soma dos
+números positivos, a soma dos números negativos e a soma das duas somas parciais.
+
+#include <stdio.h>
+
+int main() {
+    
+    int num_positivos, num_negativos, numero;
+    int contador_total = 0, contador_positivo = 0, contador_negativo = 0;
+    
+    
+    do {
+        printf("Insira um numero, pode ser positivo ou negativo:\n");
+        scanf("%d", &numero);
+        if ( numero > 0){
+            contador_positivo=+ numero;
+        } if (numero < 0){
+            contador_negativo=+ numero;
+        }
+        
+    } while ( numero != 0);
+    
+    int soma_total = contador_positivo + contador_negativo;
+    
+    printf("A soma dos numeros positivos: %d\n", contador_positivo);
+    printf("A soma dos numeros negativo: %d\n", contador_negativo);
+    printf("A soma total é:%d", soma_total);
+    return 0;
+}
+
+
+
+
+
+
+// Faça um programa que receba a idade e a altura de várias pessoas e que calcule e
+mostre a média das alturas das pessoas com mais de 50 anos. Para encerrar a entrada de
+
+dados digite idade menor ou igual a zero.
+
+#include <stdio.h>
+
+int main() {
+    
+    int idade, idade_total = 0;
+    float altura;
+    int contador_maior_50 = 0, total_pessoas = 0;
+    
+    
+    do {
+        printf("Insira sua idada:\n");
+        scanf("%d", &idade);
+        if ( idade == 0){
+            break;
+        }
+        printf("Insira sua altura:\n");
+        scanf("%f", &altura);
+        idade_total += idade;
+        total_pessoas++;
+        
+        if (idade > 50){
+            contador_maior_50++;
+        }
+        
+        
+    } while (idade !=0 );
+    
+    float Media_50 = (total_pessoas > 0)?(float) idade_total / total_pessoas:0.0;
+    
+    printf("A media das pessoas acima de 50 anos é: %.2f", Media_50);
+    
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    
+    int idade, idade_total = 0;
+    float altura;
+    int contador_maior_50 = 0, total_pessoas = 0;
+    
+    
+    do {
+        printf("Insira sua idada:\n");
+        scanf("%d", &idade);
+        if ( idade == 0){
+            break;
+        }
+        printf("Insira sua altura:\n");
+        scanf("%f", &altura);
+        idade_total += idade;
+        total_pessoas++;
+        
+        if (idade > 50){
+            contador_maior_50++;
+        }
+        
+        
+    } while (idade !=0 );
+    
+    float Media_50 = (total_pessoas > 0)?(float) idade_total / total_pessoas:0.0;
+    
+    printf("A media das pessoas acima de 50 anos é: %.2f", Media_50);
+    
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+    
+    int idade, idade_total = 0;
+    float altura;
+    int contador_maior_50 = 0, total_pessoas = 0;
+    
+    
+    do {
+        printf("Insira sua idada:\n");
+        scanf("%d", &idade);
+        if ( idade == 0){
+            break;
+        }
+        printf("Insira sua altura:\n");
+        scanf("%f", &altura);
+        idade_total += idade;
+        total_pessoas++;
+        
+        if (idade > 50){
+            contador_maior_50++;
+        }
+        
+        
+    } while (idade !=0 );
+    
+    float Media_50 = (total_pessoas > 0)?(float) idade_total / total_pessoas:0.0;
+    
+    printf("A media das pessoas acima de 50 anos é: %.2f", Media_50);
+    
+    return 0;
+}
+#include <stdio.h>
+
+int main() {
+    
+    int idade, idade_total = 0;
+    float altura;
+    int contador_maior_50 = 0, total_pessoas = 0;
+    
+    
+    do {
+        printf("Insira sua idada:\n");
+        scanf("%d", &idade);
+        if ( idade == 0){
+            break;
+        }
+        printf("Insira sua altura:\n");
+        scanf("%f", &altura);
+        idade_total += idade;
+        total_pessoas++;
+        
+        if (idade > 50){
+            contador_maior_50++;
+        }
+        
+        
+    } while (idade !=0 );
+    
+    float Media_50 = (total_pessoas > 0)?(float) idade_total / total_pessoas:0.0;
+    
+    printf("A media das pessoas acima de 50 anos é: %.2f", Media_50);
+    
+    return 0;
+}
+// Faça um programa que apresente um menu de opções para o cálculo das seguintes
+operações entre dois números: adição, subtração, multiplicação e divisão. O programa deve
+possibilitar ao usuário a escolha da operação desejada, a exibição do resultado e a volta ao
+menu de opções. O programa só termina quando for escolhida a opção de saída.
+
+#include <stdio.h>
+
+int main() {
+    int opcao;
+    float numero1, numero2, resultado;
+
+    do {
+        printf("Menu de Opções:\n");
+        printf("1. Adição\n");
+        printf("2. Subtração\n");
+        printf("3. Multiplicação\n");
+        printf("4. Divisão\n");
+        printf("5. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        if (opcao == 5) {
+            // Opção de sair
+            break;
+        }
+
+        printf("Digite o primeiro número: ");
+        scanf("%f", &numero1);
+        printf("Digite o segundo número: ");
+        scanf("%f", &numero2);
+
+        switch (opcao) {
+            case 1:
+                resultado = numero1 + numero2;
+                printf("Resultado da adição: %.2f\n", resultado);
+                break;
+            case 2:
+                resultado = numero1 - numero2;
+                printf("Resultado da subtração: %.2f\n", resultado);
+                break;
+            case 3:
+                resultado = numero1 * numero2;
+                printf("Resultado da multiplicação: %.2f\n", resultado);
+                break;
+            case 4:
+                if (numero2 != 0) {
+                    resultado = numero1 / numero2;
+                    printf("Resultado da divisão: %.2f\n", resultado);
+                } else {
+                    printf("Erro: Divisão por zero!\n");
+                }
+                break;
+            default:
+                printf("Opção inválida. Escolha uma opção válida.\n");
+                break;
+        }
+    } while (opcao != 5);
+
+    printf("Programa encerrado.\n");
+    return 0;
+}
+
+// Faça um programa que apresente o menu de opções a seguir, que permita ao usuário
+escolher a opção desejada, receba os dados necessários para executar a operação e mostre
+o resultado. Verificar a possibilidade de opção inválida e não se preocupar com as restri-
+ções, como salário inválido.
+Menu de opções:
+1. Novo salário
+2. Férias
+3. Décimo terceiro
+4. Sair
+Digite a opção desejada
+
+calcular e mostrar o novo salário
+
+Na opção 1: receber o salário de um funcionári
+usando as regras a seguir.
+Até R$ 350,00 15%
+De R$ 350,00 a R$ 600,00 10%
+Acima de R$ 600,00 5%
+
+Na opção 2: receber o salário de um funcionário, calcular e mostrar o valor de suas
+férias. Sabe-se que as férias equivalem ao seu salário acrescido de Y5.
+
+Na opção 3: receber o salário de um funcionário e o número de meses de trabalho na
+empresa, no máximo 12, calcular e mostrar o valor do décimo terceiro. Sabe-se que o
+décimo terceiro equivale ao seu salário multiplicado pelo número de meses de trabalho
+dividido por 12. .
+
+Na opção 4: sair do programa.
+
+#include <stdio.h>
+
+int main() {
+    int opcao;
+    float salario, resultado;
+    
+    do {
+        printf("Menu de Opções:\n");
+        printf("1. Novo salário\n");
+        printf("2. Férias\n");
+        printf("3. Décimo terceiro\n");
+        printf("4. Sair\n");
+        printf("Digite a opção desejada: ");
+        scanf("%d", &opcao);
+        
+        if (opcao == 4) {
+            // Opção de sair
+            break;
+        }
+        
+        printf("Digite o salário: ");
+        scanf("%f", &salario);
+
+        switch (opcao) {
+            case 1:
+                if (salario <= 350.00) {
+                    resultado = salario + (salario * 0.15);
+                } else if (salario <= 600.00) {
+                    resultado = salario + (salario * 0.10);
+                } else {
+                    resultado = salario + (salario * 0.05);
+                }
+                printf("Novo salário: R$%.2f\n", resultado);
+                break;
+            case 2:
+                resultado = salario + (salario * 0.05);
+                printf("Valor das férias: R$%.2f\n", resultado);
+                break;
+            case 3:
+                int meses;
+                printf("Digite o número de meses de trabalho (até 12): ");
+                scanf("%d", &meses);
+                if (meses <= 12) {
+                    resultado = (salario * meses) / 12.0;
+                    printf("Valor do décimo terceiro: R$%.2f\n", resultado);
+                } else {
+                    printf("Número de meses de trabalho inválido.\n");
+                }
+                break;
+            default:
+                printf("Opção inválida. Escolha uma opção válida.\n");
+                break;
+        }
+    } while (opcao != 4);
+    
+    printf("Programa encerrado.\n");
+    return 0;
+}
+
+//Uma agência bancária possui vários clientes que podem fazer investimentos com ren-
+dimentos mensais, conforme a tabela a seguir:
+
+1 Poupança 1,5%
+2 Poupança plus 2%
+3 Fundos de renda fixa 4%
+
+Faça um programa que leia o código do cliente, o tipo da conta e o valor investido e
+que calcule e mostre o rendimento mensal de acordo com o tipo do investimento. Ao final
+do programa mostre o total investido e o total de juros pagos.
+
+A leitura terminará quando o código do cliente digitado for menor ou igual a O.
+
+#include <stdio.h>
+
+int main() {
+    int codigoCliente, tipoConta;
+    float valorInvestido, rendimentoMensal, totalInvestido = 0, totalJuros = 0;
+
+    while (1) {
+        printf("Digite o código do cliente (ou 0 para sair): ");
+        scanf("%d", &codigoCliente);
+
+        if (codigoCliente <= 0) {
+            break;
+        }
+
+        printf("Digite o tipo de conta (1 - Poupança, 2 - Poupança Plus, 3 - Fundos de Renda Fixa): ");
+        scanf("%d", &tipoConta);
+
+        printf("Digite o valor investido: ");
+        scanf("%f", &valorInvestido);
+
+        switch (tipoConta) {
+            case 1:
+                rendimentoMensal = valorInvestido * 0.015; 
+                break;
+            case 2:
+                rendimentoMensal = valorInvestido * 0.02; 
+                break;
+            case 3:
+                rendimentoMensal = valorInvestido * 0.04; 
+                break;
+            default:
+                printf("Tipo de conta inválido.\n");
+                continue; // Volta ao início do loop
+        }
+
+        printf("Rendimento mensal: R$%.2f\n", rendimentoMensal);
+        totalInvestido += valorInvestido;
+        totalJuros += rendimentoMensal;
+    }
+
+    printf("Total investido: R$%.2f\n", totalInvestido);
+    printf("Total de juros pagos: R$%.2f\n", totalJuros);
+
+    return 0;
+}
+

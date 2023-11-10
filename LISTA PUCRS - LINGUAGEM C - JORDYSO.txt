@@ -1,0 +1,1930 @@
+LISTA PUCRS - LINGUAGEM C - JORDYSON CRUZ	
+
+//Escrever um algoritmo que lê 5 valores para a, um de cada vez, e conta quantos destes valores são negativos, escrevendo esta informação.
+
+#include <stdio.h>
+
+int main() {
+    int a;
+    int valor_negativo =0;
+    for (int i =1; i <= 5; i++){
+        printf("Insira o valor de A\n");
+        scanf("%d", &a);
+        
+        if (a < 0){
+            valor_negativo++;
+        }
+    }
+    
+    printf("Quanto valores de A são negativos %d\n", valor_negativo);
+   
+    return 0;
+}
+   
+//  Escrever um algoritmo que lê um valor N inteiro e positivo e que calcula e escreve o valor de E. 
+E = 1 + 1 / 1! + 1 / 2! + 1 / 3! + 1 / N
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    double E = 1.0;
+    int fatorial = 1;
+
+    printf("Digite um valor inteiro e positivo N: ");
+    scanf("%d", &N);
+
+    if (N >= 0) {
+        for (int i = 1; i <= N; i++) {
+            fatorial *= i;
+            E += 1.0 / fatorial;
+        }
+
+        printf("O valor de E é: %lf\n", E);
+    } else {
+        printf("N deve ser um número inteiro e positivo.\n");
+    }
+
+    return 0;
+}
+
+// A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre o salário e número de filhos. A prefeitura deseja saber: 
+a) média do salário da população;
+b) média do número de filhos;
+c) maior salário;
+d) percentual de pessoas com salário até R$100,00.
+
+#include <stdio.h>
+
+int main() {
+    int numFilhos;
+    float salario;
+    float somaSalario = 0;
+    float mediaSalario;
+    int somaFilhos = 0;
+    float mediaFilhos;
+    float maiorSalario = 0;
+    int pessoasAte150 = 0;
+    int totalPessoas = 0;
+
+    do {
+        printf("Digite o salário (ou um valor negativo para encerrar): ");
+        scanf("%f", &salario);
+
+        if (salario < 0) {
+            break;  
+        }
+
+        printf("Digite o número de filhos: ");
+        scanf("%d", &numFilhos);
+
+        somaSalario += salario;
+        somaFilhos += numFilhos;
+        totalPessoas++;
+
+        if (salario > maiorSalario) {
+            maiorSalario = salario;
+        }
+
+        if (salario <= 100.0) {
+            pessoasAte150++;
+        }
+    } while (1 );
+
+    if (totalPessoas > 0) {
+        mediaSalario = somaSalario / totalPessoas;
+        mediaFilhos = (float)somaFilhos / totalPessoas;
+        float percentagemAte150 = (float)pessoasAte150 / totalPessoas * 100;
+
+        printf("Média do salário da população: %.2f\n", mediaSalario);
+        printf("Média do número de filhos: %.2f\n", mediaFilhos);
+        printf("Maior salário: %.2f\n", maiorSalario);
+        printf("Percentagem de pessoas com salários até R$ 150,00: %.2f%%\n", percentagemAte150);
+    } else {
+        printf("Nenhum dado foi inserido.\n");
+    }
+
+    return 0;
+}
+
+// Chico tem 1,50 metro e cresce 2 centímetros por ano, enquanto Zé tem 1,10 metro e cresce 3 centímetros por ano. Construa um algoritmo que calcule e imprima quantos
+anos serão necessários para que Zé seja maior que Chico.
+
+#include <stdio.h>
+
+int main() {
+    float alturaChico = 1.50;
+    float alturaZe = 1.10;
+    int anos = 0;
+
+    while (alturaZe <= alturaChico) {
+        alturaChico += 0.02;  
+        alturaZe += 0.03;     
+        anos++;
+    }
+
+    printf("Serão necessários %d anos para que Zé seja maior que Chico.\n", anos);
+
+    return 0;
+}
+
+//  Construir um algoritmo que calcule a média aritmética de vários valores inteiros positivos, lidos externamente. O final da leitura acontecerá quando for lido um valor
+negativo.
+
+#include <stdio.h>
+
+int main() {
+    int num;
+    int soma_numeros = 0;
+    int total_numeros = 0;
+    
+    while(1){
+        printf("Digite um valor inteiro positivo:(Valor negativo encerra o programa)\n");
+        scanf("%d", &num);
+        if (num < 0){
+            break;
+        }
+        soma_numeros += num;
+        total_numeros++;
+    }
+    
+    float media_num = (float)soma_numeros / total_numeros;
+    
+    
+    printf("A media é: %.2f", media_num);
+    
+    return 0;
+}
+
+//  Em uma eleição presidencial existem quatro candidatos. Os votos são informados através de códigos. Os dados utilizados para a contagem dos votos obedecem à seguinte
+codificação: 
+- 1,2,3,4 = voto para os respectivos candidatos;
+- 5 = voto nulo;
+- 6 = voto em branco;
+Elabore um algoritmo que leia o código do candidado em um voto. Calcule e escreva:
+- total de votos para cada candidato;
+- total de votos nulos;
+- total de votos em branco;
+Como finalizador do conjunto de votos, tem-se o valor 0.
+
+
+#include <stdio.h>
+
+int main() {
+    int candidato1 = 0, candidato2 = 0, candidato3 = 0, candidato4 = 0;
+    int votosNulos = 0, votosEmBranco = 0;
+    int totalVotos = 0;
+    int voto;
+
+    while (1) {
+        printf("Informe o código do candidato (1 a 4), 5 para voto nulo, 6 para voto em branco, ou 0 para encerrar: ");
+        scanf("%d", &voto);
+
+        if (voto == 0) {
+            break;
+        }
+
+        switch (voto) {
+            case 1:
+                candidato1++;
+                break;
+            case 2:
+                candidato2++;
+                break;
+            case 3:
+                candidato3++;
+                break;
+            case 4:
+                candidato4++;
+                break;
+            case 5:
+                votosNulos++;
+                break;
+            case 6:
+                votosEmBranco++;
+                break;
+            default:
+                printf("Código de candidato inválido.\n");
+                break;
+        }
+
+        totalVotos++;
+    }
+
+    printf("Resultados da eleição:\n");
+    printf("Total de votos para o Candidato 1: %d\n", candidato1);
+    printf("Total de votos para o Candidato 2: %d\n", candidato2);
+    printf("Total de votos para o Candidato 3: %d\n", candidato3);
+    printf("Total de votos para o Candidato 4: %d\n", candidato4);
+    printf("Total de votos nulos: %d\n", votosNulos);
+    printf("Total de votos em branco: %d\n", votosEmBranco);
+
+    if (totalVotos > 0) {
+        float percentagemNulos = (float)votosNulos / totalVotos * 100;
+        float percentagemEmBranco = (float)votosEmBranco / totalVotos * 100;
+
+        printf("Percentagem de votos nulos sobre o total de votos: %.2f%%\n", percentagemNulos);
+        printf("Percentagem de votos em branco sobre o total de votos: %.2f%%\n", percentagemEmBranco);
+    } else {
+        printf("Nenhum voto foi registrado.\n");
+    }
+
+    return 0;
+}
+
+//  Escreva um algoritmo que calcule a média aritmética das 3 notas dos alunos de uma classe. O algoritmo deverá ler, além das notas, o código do aluno e deverá ser
+encerrado quando o código for igual a zero.
+
+#include <stdio.h>
+
+int main() {
+    float nota1, nota2, nota3;
+    int codigo, notas_individual = 0;
+    int total_pessoas = 0;
+    int total_notas = 0;
+    
+    while (1){
+        printf("Insira o seu codigo:\n");
+        scanf("%d", &codigo);
+        if ( codigo == 0){
+            break;
+        }
+        total_pessoas++;
+        printf("Insira a nota a AV1:\n");
+        scanf("%f", &nota1);
+        printf("Insira a nota a AV2:\n");
+        scanf("%f", &nota2);
+        printf("Insira a nota a AV3:\n");
+        scanf("%f", &nota3);
+        int nota_individual = (nota1 + nota2 + nota3) /3;
+        total_notas += nota_individual;
+    }
+    
+    float Media_Notas = (float)total_notas/total_pessoas;
+    
+    printf("A Media das é: %.2f\n", Media_Notas);
+    
+    return 0;
+}
+
+//  Escreva um algoritmo que calcule a média dos números digitados pelo usuário, se eles forem pares. Termine a leitura se o usuário digitar zero (0).
+
+#include <stdio.h>
+
+int main() {
+    int numero, soma = 0, quantidade = 0;
+
+    printf("Digite um número (ou 0 para sair): ");
+    scanf("%d", &numero);
+
+    while (numero != 0) {
+        if (numero % 2 == 0) {  
+            soma += numero;
+            quantidade++;
+        }
+
+        printf("Digite outro número (ou 0 para sair): ");
+        scanf("%d", &numero);
+    }
+
+    if (quantidade > 0) {
+        float media = (float)soma / quantidade;
+        printf("A média dos números pares é: %.2f\n", media);
+    } else {
+        printf("Nenhum número par foi digitado.\n");
+    }
+
+    return 0;
+}
+
+//  Escreva um algoritmo que leia 50 valores e encontre o maior e o menor deles. Mostre o resultado.
+
+#include <stdio.h>
+
+int main() {
+    int valor;
+    int maior_valor = 0;
+    int menor_valor = 0;
+    
+    for ( int i = 0; i < 6; i++){
+        printf("insira o valor %d:\n", i + 1);
+        scanf("%d", &valor);
+      
+        if (i == 0) {
+            maior_valor = valor;
+            menor_valor = valor;
+        } else {
+            if (valor > maior_valor) {
+                maior_valor = valor;
+            }
+            if (valor < menor_valor) {
+                menor_valor = valor;
+            }
+        }
+    }
+
+    printf("O maior valor é: %d\n", maior_valor);
+    printf("O menor valor é: %d\n", menor_valor);
+    return 0;
+}
+
+// Escreva um algoritmo que leia o código de um aluno e suas três notas. Calcule a média ponderada do aluno, considerando que o peso para a maior nota seja 4 e para as duas restantes, 3. Mostre o código do aluno, suas três notas, a média calculada e uma mensagem "APROVADO" se a média for maior ou igual a 5 e "REPROVADO" se a
+média for menor que 5. Repita a operação até que o código lido seja negativo.
+
+
+#include <stdio.h>
+
+int main() {
+    int codigo;
+    float nota1, nota2, nota3, media;
+    
+    while (1) {
+        printf("Insira o código do aluno (ou um código negativo para encerrar): ");
+        scanf("%d", &codigo);
+
+        if (codigo < 0) {
+            break;
+        }
+
+        printf("Insira a primeira nota: ");
+        scanf("%f", &nota1);
+        printf("Insira a segunda nota: ");
+        scanf("%f", &nota2);
+        printf("Insira a terceira nota: ");
+        scanf("%f", &nota3);
+
+        if (nota1 >= nota2 && nota1 >= nota3) {
+            media = (4 * nota1 + 3 * nota2 + 3 * nota3) / 10;
+        } else if (nota2 >= nota1 && nota2 >= nota3) {
+            media = (4 * nota2 + 3 * nota1 + 3 * nota3) / 10;
+        } else {
+            media = (4 * nota3 + 3 * nota1 + 3 * nota2) / 10;
+        }
+
+        // Exibir os resultados
+        printf("Código do aluno: %d\n", codigo);
+        printf("Notas: %.2f, %.2f, %.2f\n", nota1, nota2, nota3);
+        printf("Média: %.2f\n", media);
+
+        if (media >= 5.0) {
+            printf("Situação: APROVADO\n");
+        } else {
+            printf("Situação: REPROVADO\n");
+        }
+    }
+
+    return 0;
+}
+
+// Escreva um algoritmo que leia um número n (número de termos de uma progressão aritmética), a1 ( o primeiro termo da progressão) e r (a razão da progressão) e
+escreva os n termos desta progressão, bem como a soma dos elementos.
+
+#include <stdio.h>
+
+int main() {
+    int n, a1, r;
+    int termo, soma = 0;
+    
+    printf("Digite o número de termos da progressão aritmética: ");
+    scanf("%d", &n);
+    printf("Digite o primeiro termo (a1): ");
+    scanf("%d", &a1);
+    printf("Digite a razão (r): ");
+    scanf("%d", &r);
+
+    printf("Termos da progressão aritmética:\n");
+    for (int i = 0; i < n; i++) {
+        termo = a1 + i * r;
+        printf("%d ", termo);
+        soma += termo;
+    }
+
+    printf("\nSoma dos elementos: %d\n", soma);
+
+    return 0;
+}
+
+//  Escrever um algoritmo que leia 20 valores para uma variável n e, para cada um deles, calcule a tabuada de 1 até n. Mostre a tabuada na forma:
+1 x n = n
+2 x n = 2n
+3 x n = 3n
+.......
+n x n = n2
+
+#include <stdio.h>
+
+int main() {
+    int valores[20];
+
+    for (int i = 0; i < 20; i++) {
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%d", &valores[i]);
+    }
+
+    for (int i = 0; i < 20; i++) {
+        int n = valores[i];
+        printf("Tabuada de %d:\n", n);
+        for (int j = 1; j <= n; j++) {
+            printf("%d x %d = %d\n", j, n, j * n);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+// Escrever um algoritmo que leia um número n que indica quantos valores devem ser lidos a seguir. Para cada número lido, mostre uma tabela contendo o valor lido e o
+fatorial deste valor.
+ 
+
+#include <stdio.h>
+
+long long fatorial(int n) {
+    if (n == 0) {
+        return 1;
+    } else {
+        return n * fatorial(n - 1);
+    }
+}
+
+int main() {
+    int n;
+    
+    printf("Digite o número de valores a serem lidos: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        int valor;
+        printf("Digite um número inteiro: ");
+        scanf("%d", &valor);
+        
+        long long resultado = fatorial(valor);
+        
+        printf("Valor: %d, Fatorial: %lld\n", valor, resultado);
+    }
+
+    return 0;
+}
+
+// Escrever um algoritmo que leia um número não determinado de valores e calcule a média aritmética dos valores lidos, a quantidade de valores positivos, a quantidade de
+valores negativos e o percentual de valores negativos e positivos. Mostre os resultados.
+
+#include <stdio.h>
+int main(){
+    int num;
+    int valores_total = 0;
+    int num_positivo = 0;
+    int num_negativo = 0;
+    int soma_valores = 0;
+    
+    while(1){
+        printf("insira o numero:\n");
+        scanf("%d", &num);
+        if ( num == 0){
+            break;
+        }
+        valores_total++;
+        soma_valores += num;
+        
+        if ( num > 0){
+            num_positivo++;
+        }
+        if (num < 0){
+            num_negativo++;
+        }
+    }
+    
+    if (valores_total > 0){
+        
+    
+    float Media_total =(float) soma_valores / valores_total;
+
+    float percento_positivo =(float)num_positivo / valores_total *100;
+    float percento_negativo =(float)num_negativo / valores_total *100;
+    
+    printf("A media é: %.2f", Media_total);
+    printf("Os valores positivos lidos são: %d\n", num_positivo);
+    printf("Os valores negativo lidos são: %d\n", num_negativo);
+    printf("O percentual positivo é: %.2f\n", percento_positivo);
+    printf("O percentual negativo é: %.2f\n", percento_negativo);
+    } else {
+        printf("nenhum valor foi inserido!\n");
+    }
+    return 0;
+}
+
+//Escrever um algoritmo que leia uma quantidade desconhecida de números e conte quantos deles estão nos seguintes intervalos: [0.25], [26,50], [51,75] e [76,100]. A
+entrada de dados deve terminar quando for lido um número negativo.
+
+#include <stdio.h>
+int main(){
+    int num;
+    int intervalo_1 = 0;
+    int intervalo_2 = 0;
+    int intervalo_3 = 0;
+    int intervalo_4 = 0;
+    
+    
+    while(1){
+        printf("insira um numero:(digite um numero negativo para encerrar o programa)\n");
+        scanf("%d", &num);
+        if (num < 0){
+            break;
+        }
+        
+        if (num > 0 && num < 25){
+            intervalo_1++;
+        }
+        if (num > 26 && num < 50){
+            intervalo_2++;
+        }
+        if (num > 51 && num < 75){
+            intervalo_3++;
+        }
+        if (num > 76 && num < 100){
+            intervalo_4++;
+        }
+    }
+    
+    printf("A quantidade de numeros entre 0 & 25: %d\n", intervalo_1);
+    printf("A quantidade de numeros entre 26 & 50: %d\n", intervalo_2);
+    printf("A quantidade de numeros entre 51 & 75: %d\n", intervalo_3);
+    printf("A quantidade de numeros entre 76 & 100: %d\n", intervalo_4);
+    
+    
+    return 0;
+}
+
+//  Escrever um algoritmo que lê um conjunto não determinado de valores, um de cada vez, e escreve uma tabela com cabeçalho, que deve ser repetido a cada 20 linhas. A
+tabela conterá o valor lido, seu quadrado, seu cubo e sua raiz quadrada.
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int contador = 0;
+    int valor;
+
+    printf("Valor\tQuadrado\tCubo\tRaiz Quadrada\n");
+
+    while (1) {
+        printf("Insira um valor (negativo para encerrar): ");
+        scanf("%d", &valor);
+
+        if (valor < 0) {
+            break;
+        }
+
+        double quadrado = valor * valor;
+        double cubo = valor * valor * valor;
+        double raizQuadrada = sqrt(valor);
+
+        printf("%d\t%.2f\t%.2f\t%.2f\n", valor, quadrado, cubo, raizQuadrada);
+
+        contador++;
+
+       
+    }
+
+    return 0;
+}
+
+
+//  Escrever um algoritmo que lê um número não determinado de pares de valores m,n, todos inteiros e positivos, um par de cada vez, e calcula e escreve a soma dos n
+inteiros consecutivos a partir de m inclusive.
+#include <stdio.h>
+
+int main() {
+    int m, n;
+
+    while (1) {
+        printf("Digite o valor de m (ou digite 0 para sair): ");
+        scanf("%d", &m);
+
+        if (m == 0) {
+            break;
+        }
+
+        printf("Digite o valor de n: ");
+        scanf("%d", &n);
+
+        int soma = 0;
+        for (int i = 0; i < n; i++) {
+            soma += m + i;
+        }
+
+        printf("A soma dos %d inteiros consecutivos a partir de %d é %d\n", n, m, soma);
+    }
+
+    return 0;
+}
+
+#include <stdio.h>
+
+int calcularDivisores(int numero) {
+    int divisores = 0;
+    for (int i = 1; i <= numero; i++) {
+        if (numero % i == 0) {
+            divisores++;
+        }
+    }
+    return divisores;
+}
+
+// Escrever um algoritmo que lê um número não determinado de valores para m, todos inteiros e positivos, um de cada vez. Se m for par, verificar quantos divisores possui e
+escrever esta informação. Se m for ímpar e menor do que 10 calcular e escrever o fatorial de m. Se m for ímpar e maior ou igual a 10 calcular e escrever a soma dos inteiros
+de 1 até m.
+
+
+int calcularFatorial(int numero) {
+    int fatorial = 1;
+    for (int i = 1; i <= numero; i++) {
+        fatorial *= i;
+    }
+    return fatorial;
+}
+
+int calcularSomaAteM(int numero) {
+    int soma = 0;
+    for (int i = 1; i <= numero; i++) {
+        soma += i;
+    }
+    return soma;
+}
+
+
+// Faça um algoritmo que leia uma quantidade não determinada de números positivos. Calcule a quantidade de números pares e ímpares, a média de valores pares e a
+média geral dos números lidos. O número que encerrará a leitura será zero.
+
+
+int main() {
+    int m;
+
+    while (1) {
+      
+        printf("Digite um valor inteiro e positivo (ou digite 0 para sair): ");
+        scanf("%d", &m);
+
+        if (m == 0) {
+            break;
+        }
+
+        if (m % 2 == 0) {
+            int divisores = calcularDivisores(m);
+            printf("%d é par e possui %d divisores.\n", m, divisores);
+        } else if (m < 10) {
+            int fatorial = calcularFatorial(m);
+            printf("%d é ímpar e menor do que 10. Seu fatorial é %d.\n", m, fatorial);
+        } else {
+            int soma = calcularSomaAteM(m);
+            printf("%d é ímpar e maior ou igual a 10. A soma dos inteiros de 1 até %d é %d.\n", m, m, soma);
+        }
+    }
+
+    return 0;
+}
+
+// Faça um algoritmo que leia vários números inteiros e calcule o somatório dos números negativos. O fim da leitura será indicado pelo número 0.
+
+#include <stdio.h>
+
+int main() {
+    int num;
+    int soma_Negativo = 0;
+    while(1){
+        printf("Insira o numero: (digite 0 para encerrar o programa)\n");
+        scanf("%d", &num);
+        if (num == 0){
+            break;
+        }
+        
+        if ( num < 0){
+            soma_Negativo += num;
+        }
+    }
+    
+    printf("A soma dos N negativos é: %d", soma_Negativo); 
+    
+    return 0;
+}
+
+//  Faça um algoritmo que leia vários números inteiros e positivos e calcule o produtório dos números pares. O fim da leitura será indicado pelo número 0.
+
+
+
+#include <stdio.h>
+
+int main() {
+    int num;
+    int soma_positivos = 1;
+    while(1){
+        printf("Digite um numero inteiro e positivo: (digite 0 para encerrar o programa)\n");
+        scanf("%d", &num);
+        if (num == 0){
+            break;
+        }
+        if (num % 2 == 0){
+            soma_positivos += num;
+        }
+    }
+    
+    printf("A soma dos numeros positivos é: %d", soma_positivos);
+    return 0;
+}
+
+// Foi feita uma pesquisa entre os habitantes de uma região. Foram coletados os dados de idade, sexo (M/F) e salário. Faça um algoritmo que informe: 
+a) a média de salário do grupo;
+b) maior e menor idade do grupo;
+c) quantidade de mulheres com salário até R$100,00.
+Encerre a entrada de dados quando for digitada uma idade negativa. (Use o comando enquanto-faça e não use vetores ou matrizes)
+
+#include <stdio.h>
+
+int main() {
+    int idade;
+    char sexo;
+    float salario;
+    int salario_total = 0;
+    int total_pessoas = 0;
+    int maior_idade = 0;
+    int menor_idade = 0;
+    int mulheres_100 = 0;
+    
+    do {
+        printf("insira sua idade:\n");
+        scanf("%d", &idade);
+        if (idade < 0){
+            break;
+        }
+        printf("Indique H - Homem ou M - Mulher:\n");
+        scanf(" %c", &sexo);
+        printf("Digite seu salario atual:\n");
+        scanf("%f", &salario);
+        
+        salario_total += salario;
+        total_pessoas++;
+        
+        if (sexo == 'M' || sexo == 'm'){
+            if ( salario <= 100){
+                mulheres_100++;
+            }
+        }
+        if (idade > maior_idade){
+            maior_idade = idade;
+        } else if ( idade < menor_idade){
+            menor_idade = idade;
+        }
+        
+    } while ( idade != 0);
+    
+    float media_salario = (float) salario_total / total_pessoas;
+    
+    printf("A media total é: %.2f\n", media_salario);
+    printf("A maior idade: %d, menor idade: %d\n", maior_idade, menor_idade);
+    printf("Quantida de mulheres com salario ate R$100,00: %d\n", mulheres_100);
+    
+    return 0;
+}
+
+
+// Foi realizada uma pesquisa de algumas características físicas da população de uma certa região, a qual coletou os seguintes dados referentes a cada habitante para
+serem analisados: 
+- sexo (masculino e feminino)
+- cor dos olhos (azuis, verdes ou castanhos)
+- cor dos cabelos ( louros, castanhos, pretos)
+- idade 
+
+#include <stdio.h>
+
+int main() {
+    char sexo;
+    char olhos;
+    char cabelo;
+    int idade;
+    
+    while(1){
+        
+        printf("Qual a sua idada: (Digite 0 para encerraro programa)\n");
+        scanf("%d", &idade);
+        if (idade == 0){
+            break;
+        printf("Qual seu sexo, H - Homem, M - Mulher:\n");
+        scanf(" %c", &sexo)
+        printf("Qual a cor dos seus olhos, A - Azul, V - Verde, C - castanhos:\n");
+        scanf(" %c", &olhos);
+        printf("Qual a cor dos seus cabelos, L - Louro, C -  castanhos, P - Preto: \n");
+        scanf(" %c", &cabelo);
+        
+        }
+    }
+    
+    return 0;
+}
+
+// Faça um algoritmo que determine e escreva: 
+- a maior idade dos habitantes
+- a quantidade de indivíduos do sexo feminino cuja idade está entre 18 e 35 anos inclusive e que tenham olhos verdes e cabelos louros.
+O final do conjunto de habitantes é reconhecido pelo valor -1 entrada como idade.
+
+#include <stdio.h>
+
+int main() {
+    char sexo;
+    char olhos;
+    char cabelo;
+    int idade;
+    int maior_idade = 0;
+    int feminido_especial = 0;
+    while(1){
+        
+        printf("Qual a sua idada: (Digite -1 para encerraro programa)\n");
+        scanf("%d", &idade);
+        if (idade == -1){
+            break;}
+        printf("Qual seu sexo, H - Homem, M - Mulher:\n");
+        scanf(" %c", &sexo);
+        printf("Qual a cor dos seus olhos, A - Azul, V - Verde, C - castanhos:\n");
+        scanf(" %c", &olhos);
+        printf("Qual a cor dos seus cabelos, L - Louro, C -  castanhos, P - Preto: \n");
+        scanf(" %c", &cabelo);
+        
+        if ( idade > maior_idade){
+            maior_idade = idade;
+        }
+        if (sexo == 'M' || 'm' && idade >= 18 && idade <= 35){
+            if (olhos == 'V' || 'v' && cabelo == 'L' || 'l'){
+                feminido_especial++;
+            }
+        }
+        
+    }
+    
+    printf("Maior idade entre os habitantes é: %d\n", maior_idade);
+    printf("A quantidade de indivíduos do sexo feminino cuja idade está entre 18 e 35 anos inclusive e que tenham olhos verdes e cabelos louros: %d\n", feminido_especial);
+    
+    
+    return 0;
+}
+
+// Uma empresa deseja aumentar seus preços em 20%. Faça um algoritmo que leia o código e o preço de custo de cada produto e calcule o preço novo. Calcule também, a
+média dos preços com e sem aumento. Mostre o código e o preço novo de cada produto e, no final, as médias. A entrada de dados deve terminar quando for lido um código
+de produto negativo. (Use o comando enquanto-faça)
+
+#include <stdio.h>
+
+int main() {
+    int codigo;
+    float preco_custo, novo_preco;
+    float total_precos = 0, total_precos_com_aumento = 0;
+    int num_produtos = 0;
+    
+    do {
+        printf("Digite o código do produto (ou um valor negativo para encerrar): ");
+        scanf("%d", &codigo);
+        
+        if (codigo < 0) {
+            break;
+        }
+        
+        printf("Digite o preço de custo do produto: ");
+        scanf("%f", &preco_custo);
+        
+        novo_preco = preco_custo * 1.20;  
+        
+        printf("Código: %d - Novo Preço: %.2f\n", codigo, novo_preco);
+        
+        total_precos += preco_custo;
+        total_precos_com_aumento += novo_preco;
+        num_produtos++;
+    } while (codigo != 0);
+    
+    if (num_produtos > 0) {
+        float media_precos = total_precos / num_produtos;
+        float media_precos_com_aumento = total_precos_com_aumento / num_produtos;
+        
+        printf("Média dos preços sem aumento: %.2f\n", media_precos);
+        printf("Média dos preços com aumento: %.2f\n", media_precos_com_aumento);
+    } else {
+        printf("Nenhum dado foi inserido.\n");
+    }
+    
+    return 0;
+}
+
+// Escreva um algoritmo que gere o números de 1000 a 1999 e escreva aqueles que dividido por 11 dão resto igual a 5.
+
+#include <stdio.h>
+
+int main() {
+    
+    for ( int i = 1000; i <= 1999; i++){
+        if ( i % 11 == 5){
+            printf(" Numeros divisiveis por 11 são: %d\n", i);
+        }
+    }
+    
+    
+    return 0;
+}
+// Escreva um algoritmo que leia 500 valores inteiros e positivos e: 
+a) encontre o maior valor;
+b) encontre o menor valor;
+c) calcule a média dos números lidos.
+
+#include <stdio.h>
+
+int main() {
+    
+    int valor;
+    int maior_valor = 0;
+    int menor_valor = 0;
+    int valor_total = 0;
+    
+    for (int i = 1; i <= 500; i++){
+        printf("Escreva o %d valor: \n", i);
+        scanf("%d", &valor);
+        valor_total += valor;
+        
+        if( i == 1 ){
+            menor_valor = valor;
+        } else {
+            if ( valor > maior_valor){
+            maior_valor = valor;
+        } if ( valor < menor_valor){
+            menor_valor = valor;
+        }
+    }
+    
+    }
+    float media_valor = (float)valor_total / 500;
+    
+    printf("Maior valor: %d\n", maior_valor);
+    printf("Menor valor: %d\n", menor_valor);
+    printf("Media dos valores: %.2f\n", media_valor);
+    return 0;
+
+}
+
+// Escreva um algoritmo que lê um valor n inteiro e positivo e que calcula a seguinte soma: 
+S := 1 + 1/2 + 1/3 + 1/4 + ... + 1/n
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    double soma = 0.0;
+
+    printf("Digite um valor inteiro e positivo n: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Por favor, insira um valor inteiro e positivo.\n");
+    } else {
+        for (int i = 1; i <= n; i++) {
+            soma += 1.0 / i; // Adiciona 1/i à soma
+        }
+        printf("A soma S é: %lf\n", soma);
+    }
+
+    return 0;
+}
+
+// Escrever um algoritmo que calcule e mostre a média aritmética dos números lidos entre 13 e 73.
+
+#include <stdio.h>
+
+int main() {
+    int valor;
+    int valores_especiais = 0;
+    int valor_total = 0;
+   
+    
+    while (1){
+        printf("Insira o valor:(0 encerra)\n");
+        scanf("%d", &valor);
+        if (valor == 0){
+            break;
+        }
+        valor_total+= valor;
+        
+       
+        
+        if (valor >= 13 && valor <= 73){
+            valores_especiais++;
+        }
+        
+    }
+    
+    float media_aritimetica = (float)valor_total/ valores_especiais;
+    
+    
+    printf("media aritimetica é: %.2f", media_aritimetica);
+ 
+    return 0;
+}
+
+// Escrever um algoritmo que gera e escreve os números ímpares entre 100 e 200.
+
+#include <stdio.h>
+
+int main() {
+    
+    
+   for (int i = 100; i <= 200; i++){
+       if ( i % 2 == 0){
+           printf("\n");
+       }else {
+           printf("%d", i);
+       }
+   }
+ 
+    return 0;
+}
+
+//  Escrever um algoritmo que lê 10 valores, um de cada vez, e conta quantos deles estão no intervalo [10,20] e quantos deles estão fora do intervalo, escrevendo estas
+informações.
+
+#include <stdio.h>
+
+int main() {
+    
+    int intervalo_10_20 = 0;
+    int fora_intervalo = 0;
+    int valor;
+    
+    for (int i = 1; i <=10; i++){
+        printf("Escreva um valor inteiro:\n");
+        scanf("%d", &valor);
+        
+        if (valor >= 10 && valor <= 20){
+            intervalo_10_20++;
+        } else {
+            fora_intervalo++;
+        }
+    }
+    
+    printf("Quantidade de numeros entre 10 e 20: %d\n", intervalo_10_20);
+    printf("Quantidade de numeros fora do intervalo 10 e 20: %d\n", fora_intervalo);
+    
+    return 0;
+}
+
+//  Escrever um algoritmo que lê 5 pares de valores a, b, todos inteiros e positivos, um par de cada vez, e com a < b, escreve os inteiros pares de a até b, incluindo o a e o b
+se forem pares.
+
+#include <stdio.h>
+
+int main() {
+    int a, b;
+
+    for (int i = 0; i < 5; i++) {
+        printf("Insira o valor de a (inteiro positivo): ");
+        scanf("%d", &a);
+        printf("Insira o valor de b (inteiro positivo maior que a): ");
+        scanf("%d", &b);
+
+        if (a % 2 != 0) {
+            a++;
+        }
+
+        printf("Números pares entre %d e %d: ", a, b);
+        for (int j = a; j <= b; j += 2) {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+// Escrever um algoritmo que leia 20 valores para uma variável N e, para cada um deles, calcule a tabuada de 1 até N. Mostre a tabuada na forma: 1 x N = N 2 x N = 2N 3 x
+N = 3N ...... N x N = N2 34. Escrever um algoritmo que leia 5 conjuntos de 2 valores, o primeiro representando o número de um aluno, e o segundo representando a sua altura
+em centímetros. Encontre o aluno mais alto e o mais baixo. Mostre o número do aluno mais alto e do mais baixo, junto com suas alturas.
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    
+    for (int i = 0; i < 20; i++) {
+        printf("Insira um valor para N: ");
+        scanf("%d", &N);
+        
+        printf("Tabuada de 1 até %d:\n", N);
+        for (int j = 1; j <= N; j++) {
+            printf("%d x %d = %d\n", j, N, j * N);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+#include <stdio.h>
+
+int main() {
+    int numero_aluno;
+    int altura;
+    int aluno_mais_alto = 0;
+    int altura_mais_alta = 0;
+    int aluno_mais_baixo = 0;
+    int altura_mais_baixa = 1000; // Inicializado com um valor alto para garantir que qualquer altura seja menor.
+
+    for (int i = 0; i < 5; i++) {
+        printf("Insira o número do aluno: ");
+        scanf("%d", &numero_aluno);
+        printf("Insira a altura do aluno em centímetros: ");
+        scanf("%d", &altura);
+
+        if (altura > altura_mais_alta) {
+            altura_mais_alta = altura;
+            aluno_mais_alto = numero_aluno;
+        }
+
+        if (altura < altura_mais_baixa) {
+            altura_mais_baixa = altura;
+            aluno_mais_baixo = numero_aluno;
+        }
+    }
+
+    printf("Aluno mais alto: Número %d, Altura: %d cm\n", aluno_mais_alto, altura_mais_alta);
+    printf("Aluno mais baixo: Número %d, Altura: %d cm\n", aluno_mais_baixo, altura_mais_baixa);
+
+    return 0;
+}
+
+// Escrever um algoritmo que leia um conjunto de 50 informações contendo, cada uma delas, a altura e o sexo de uma pessoa (código=1, masculino código=2, feminino),
+calcule e mostre o seguinte: 
+a) a maior e a menor altura da turma
+b) a média da altura das mulheres
+c) a média da altura da turma.
+ 	
+#include <stdio.h>
+
+int main() {
+    int codigo;
+    float altura;
+    int altura_total = 0;
+    int maior_altura = 0;
+    int menor_altura = 0;
+    int altura_feminino = 0;
+    int codigo_total = 0;
+    int total_mulheres = 0;
+    int total_homens = 0;
+    
+    for (int i =1; i <= 50; i++){
+        printf("Insira sua altura: \n");
+        scanf("%f", &altura);
+        printf("Digite o codigo: 1 - Masculino, 2 - Feminino\n");
+        scanf("%d", &codigo);
+        altura_total += altura;
+        codigo_total++;
+        
+        if (codigo == 1){
+            total_homens++;
+        }
+        if (codigo == 2){
+            total_mulheres++;
+            altura_feminino+= altura;
+        }
+        if ( altura > maior_altura){
+            maior_altura = altura;
+        } else if (altura < menor_altura){
+            menor_altura = altura;
+        }
+    }
+    
+    float media_altura_feminino = (float) altura_feminino / total_mulheres;
+    float media_altura_turma = (float) altura_total / 50;
+    
+    printf("Maior e menor altura do grupo é: %d , %d\n", maior_altura, menor_altura);
+    printf("Media altura entre mulheres: %.2f\n", media_altura_feminino);
+    printf("Media do grupo: %.2f\n", media_altura_turma);
+    return 0;
+}
+
+//  Escrever um algoritmo que leia um número N que indica quantos valores devem ser lidos a seguir. Para cada número lido, mostre uma tabela contendo o valor lido e o fatorial deste valor.
+
+#include <stdio.h>
+
+
+unsigned long long calcularFatorial(int num) {
+    if (num <= 1) {
+        return 1;
+    } else {
+        return num * calcularFatorial(num - 1);
+    }
+}
+
+int main() {
+    int N;
+
+    printf("Digite a quantidade de valores a serem lidos: ");
+    scanf("%d", &N);
+
+    printf("Valor | Fatorial\n");
+    printf("------+----------\n");
+
+    for (int i = 0; i < N; i++) {
+        int valor;
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%d", &valor);
+
+        unsigned long long fatorial = calcularFatorial(valor);
+        printf("%5d | %llu\n", valor, fatorial);
+    }
+
+    return 0;
+}
+
+// Escrever um algoritmo que leia um valor X e calcule e mostre os 20 primeiros termos da série: 
+1 1 1 1 .....
+X X2 X3 X4
+
+#include <stdio.h>
+
+int main() {
+    int X;
+
+    printf("Digite o valor de X: ");
+    scanf("%d", &X);
+
+    printf("Os 20 primeiros termos da série:\n");
+
+    for (int i = 1; i <= 20; i++) {
+        printf("%d ", X);
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+// Escrever um algoritmo que calcula e escreve o produto dos números primos entre 92 e 1478.
+
+
+#include <stdio.h>
+
+int isPrime(int num) {
+    if (num <= 1) {
+        return 0;
+    }
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int lowerLimit = 92;
+    int upperLimit = 1478;
+    long long product = 1;
+
+    for (int i = lowerLimit; i <= upperLimit; i++) {
+        if (isPrime(i)) {
+            product *= i;
+        }
+    }
+
+    printf("O produto dos números primos entre %d e %d é: %lld\n", lowerLimit, upperLimit, product);
+
+    return 0;
+}
+
+// Escrever um algoritmo que gera e escreve os 5 primeiros números perfeitos. Um número perfeito é aquele que é igual a soma dos seus divisores. (Ex.: 6 = 1+2+3; 28=
+1+2+4+7+14 etc).
+
+#include <stdio.h>
+
+int main() {
+    int count = 0; // Contador de números perfeitos
+    int number = 2; // Número a ser verificado
+
+    while (count < 5) {
+        int sum = 1; // Inicialize a soma com 1 (já que todo número é divisível por 1)
+
+        for (int i = 2; i * i <= number; i++) {
+            if (number % i == 0) {
+                sum += i;
+                if (i != number / i) {
+                    sum += number / i;
+                }
+            }
+        }
+
+        if (sum == number) {
+            printf("Número perfeito %d: %d\n", count + 1, number);
+            count++;
+        }
+
+        number++; // Verifique o próximo número
+    }
+
+    return 0;
+}
+
+// Escrever um algoritmo que lê um valor n que indica quantos valores devem ser lidos para m, valores inteiros e positivos, com leitura de um valor de cada vez. Escreva
+uma tabela contendo o valor lido, o somatório dos inteiros de 1 até m e o fatorial de m.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Digite o valor de n: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        int m;
+        int somatorio = 0;
+        unsigned long long fatorial = 1;
+
+        printf("Digite um valor inteiro e positivo (m): ");
+        scanf("%d", &m);
+
+        for (int j = 1; j <= m; j++) {
+            somatorio += j;
+        }
+
+        for (int j = 1; j <= m; j++) {
+            fatorial *= j;
+        }
+
+        printf("Valor lido: %d\n", m);
+        printf("Somatório: %d\n", somatorio);
+        printf("Fatorial de %d: %llu\n", m, fatorial);
+    }
+
+    return 0;
+}
+
+
+// Faça um algoritmo que leia as três notas de 50 alunos de uma turma. Para cada aluno, calcule a média ponderada, como segue: MP = ( n1*2 + n2*4 + n3*3 ) / 10
+Além disso, calcule a média geral da turma. Mostre a média de cada aluno e uma mensagem "Aprovado", caso a média seja maior ou igual a sete, e uma mensagem
+"Reprovado", caso contrário. Ao final, mostre a média geral.
+
+
+#include <stdio.h>
+
+int main() {
+    int N1, N2, N3;
+    int total = 0;
+    float somaN1 = 0, somaN2 = 0, somaN3 = 0;
+    for (int i = 1; i <= 3; i++){
+        
+        printf("Insira sua Nota 1:\n"); scanf("%d", &N1);
+        printf("Insira sua Nota 2':\n"); scanf("%d", &N2);
+        printf("Insira sua Nota 3:\n"); scanf("%d", &N3);
+        
+        somaN1 += N1;
+        somaN2 += N2;
+        somaN3 += N3;
+         
+         float media_ponderada = (somaN1 * 2 + somaN2 * 4 + somaN3 * 3) / 10;
+        total++;
+        printf("A media media_ponderada é: %.2f\n", media_ponderada);
+        if ( media_ponderada >= 7){
+            printf("Aluno APROVADO!\n");
+        } else {
+            printf("Aluno REPROVADO!\n");
+        }
+       
+    }
+    
+   float media_geral =(somaN1 + somaN2 + somaN3) /  (total * 3);
+    
+    printf("A mediaa Geral: %.2f", media_geral);
+    
+    return 0;
+}
+
+//  Faça um algoritmo que calcule a seguinte soma: H = 10 + 10 + 10 + ... + 10 
+O algoritmo deve ler um número n (inteiro e positivo) e mostrar o resultado final de H. A soma deve ser calculada apenas uma vez.
+
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Insira um número inteiro e positivo n: ");
+    scanf("%d", &n);
+    
+    if (n < 0) {
+        printf("O número deve ser positivo.\n");
+    } else {
+        int H = 10 * n;
+        printf("H = %d\n", H);
+    }
+
+    return 0;
+}
+
+// Fazer um algoritmo que leia 5 grupos de 4 valores (A,B,C,D) e mostre-os na ordem lida. Em seguida, ordene-os em ordem decrescente e mostre-os novamente, já
+ordenados.
+#include <stdio.h>
+
+int main() {
+    int grupos[5][4];
+    
+    for (int i = 0; i < 5; i++) {
+        printf("Insira o grupo %d (A B C D): ", i + 1);
+        scanf("%d %d %d %d", &grupos[i][0], &grupos[i][1], &grupos[i][2], &grupos[i][3]);
+    }
+    
+    printf("\nGrupos na ordem lida:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d %d %d %d\n", grupos[i][0], grupos[i][1], grupos[i][2], grupos[i][3]);
+    }
+    
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 4; j++) {
+            for (int k = j + 1; k < 4; k++) {
+                if (grupos[i][k] > grupos[i][j]) {
+                    int temp = grupos[i][j];
+                    grupos[i][j] = grupos[i][k];
+                    grupos[i][k] = temp;
+                }
+            }
+        }
+    }
+    
+    printf("\nGrupos ordenados em ordem decrescente:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d %d %d %d\n", grupos[i][0], grupos[i][1], grupos[i][2], grupos[i][3]);
+    }
+    
+    return 0;
+}
+
+// Foi feita uma estatística nas 200 principais cidades brasileiras para coletar dados sobre acidentes de trânsito. Foram obtidos os seguintes dados: 
+- código da cidade
+- estado (RS, SC, PR, SP, RJ, ...)
+- número de veículos de passeio (em 1992)
+- número de acidentes de trânsito com vítimas (em 1992)
+Deseja-se saber:
+a) qual o maior e o menor índice de acidentes de trânsito e a que cidades pertencem
+b) qual a média de veículos nas cidades brasileiras
+c) qual a média de acidentes com vítimas entre as cidades do Rio Grande do Sul.
+
+#include <stdio.h>
+#include <string.h>
+
+struct Cidade {
+    int codigo;
+    char estado[3];
+    int veiculos;
+    int acidentes;
+};
+
+int main() {
+    int n = 200; 
+    struct Cidade cidades[n];
+
+    for (int i = 0; i < n; i++) {
+        printf("Cidade %d:\n", i + 1);
+        printf("Código: ");
+        scanf("%d", &cidades[i].codigo);
+        printf("Estado: ");
+        scanf("%s", cidades[i].estado);
+        printf("Veículos: ");
+        scanf("%d", &cidades[i].veiculos);
+        printf("Acidentes: ");
+        scanf("%d", &cidades[i].acidentes);
+    }
+
+    int min_acidentes = cidades[0].acidentes;
+    int max_acidentes = cidades[0].acidentes;
+    int min_index = 0;
+    int max_index = 0;
+    int total_veiculos = 0;
+    int total_acidentes_rs = 0;
+    int cidades_rs = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (cidades[i].acidentes < min_acidentes) {
+            min_acidentes = cidades[i].acidentes;
+            min_index = i;
+        }
+        if (cidades[i].acidentes > max_acidentes) {
+            max_acidentes = cidades[i].acidentes;
+            max_index = i;
+        }
+        total_veiculos += cidades[i].veiculos;
+
+        if (strcmp(cidades[i].estado, "RS") == 0) {
+            total_acidentes_rs += cidades[i].acidentes;
+            cidades_rs++;
+        }
+    }
+
+    printf("\nMenor índice de acidentes: %d na cidade %d\n", min_acidentes, cidades[min_index].codigo);
+    printf("Maior índice de acidentes: %d na cidade %d\n", max_acidentes, cidades[max_index].codigo);
+    printf("Média de veículos nas cidades brasileiras: %.2f\n", (float)total_veiculos / n);
+
+    if (cidades_rs > 0) {
+        printf("Média de acidentes com vítimas no Rio Grande do Sul: %.2f\n", (float)total_acidentes_rs / cidades_rs);
+    } else {
+        printf("Não há cidades no Rio Grande do Sul na amostra.\n");
+    }
+
+    return 0;
+}
+
+// Foi feita uma pesquisa entre os 1000 habitantes de uma região para coletar os seguintes dados: sexo (0-feminino, 1-masculino), idade e altura. Faça um algoritmo que leia
+as informações coletadas e mostre as seguintes informações: (use o comando repita-até) 
+a) média da idade do grupo;
+b) média da altura das mulheres;
+c) média da idade dos homens;
+d) percentual de pessoas com idade entre 18 e 35 anos (inclusive).
+
+#include <stdio.h>
+
+int main() {
+    int habitantes = 1000;
+    int sexo, idade;
+    float altura;
+    int total_idade = 0;
+    int total_idade_homens = 0;
+    float total_altura_mulheres = 0;
+    int total_mulheres = 0;
+    int total_pessoas_18_35 = 0;
+
+    for (int i = 0; i < habitantes; i++) {
+        printf("Habitante %d:\n", i + 1);
+        printf("Sexo (0-feminino, 1-masculino): ");
+        scanf("%d", &sexo);
+        printf("Idade: ");
+        scanf("%d", &idade);
+        printf("Altura: ");
+        scanf("%f", &altura);
+
+        total_idade += idade;
+
+        if (sexo == 0) { 
+            total_altura_mulheres += altura;
+            total_mulheres++;
+        } else { 
+            total_idade_homens += idade;
+        }
+
+        if (idade >= 18 && idade <= 35) {
+            total_pessoas_18_35++;
+        }
+    }
+
+    float media_idade = (float)total_idade / habitantes;
+    float media_altura_mulheres = total_mulheres > 0 ? total_altura_mulheres / total_mulheres : 0;
+    float media_idade_homens = total_homens > 0 ? (float)total_idade_homens / total_homens : 0;
+    float percentual_18_35 = (float)total_pessoas_18_35 / habitantes * 100;
+
+    printf("Média da idade do grupo: %.2f\n", media_idade);
+    printf("Média da altura das mulheres: %.2f\n", media_altura_mulheres);
+    printf("Média da idade dos homens: %.2f\n", media_idade_homens);
+    printf("Percentual de pessoas com idade entre 18 e 35 anos: %.2f%%\n", percentual_18_35);
+
+    return 0;
+}
+
+// Foi realizada uma pesquisa de algumas características físicas da população de um certa região. Foram entrevistadas 500 pessoas e coletados os seguintes dados: 
+a- sexo: M (masculino) e F (feminino)
+b- cor dos olhos: A (azuis), V (verdes) e C (castanhos)
+c- cor dos cabelos: L (louros), C (castanhos) e P (pretos)
+d- idade
+
+
+#include <stdio.h>
+
+int main() {
+    int total_pessoas = 500;
+    char sexo, cor_olhos, cor_cabelos;
+    int idade;
+    int maior_idade = 0;
+    int quantidade_mulheres_verdes_louros = 0;
+
+    for (int i = 0; i < total_pessoas; i++) {
+        printf("Pessoa %d:\n", i + 1);
+        printf("Sexo (M/F): ");
+        scanf(" %c", &sexo);
+        printf("Cor dos olhos (A/V/C): ");
+        scanf(" %c", &cor_olhos);
+        printf("Cor dos cabelos (L/C/P): ");
+        scanf(" %c", &cor_cabelos);
+        printf("Idade: ");
+        scanf("%d", &idade);
+
+        if (idade > maior_idade) {
+            maior_idade = idade;
+        }
+
+        if (sexo == 'F' && idade >= 18 && idade <= 35 && cor_olhos == 'V' && cor_cabelos == 'L') {
+            quantidade_mulheres_verdes_louros++;
+        }
+    }
+
+    printf("Maior idade do grupo: %d\n", maior_idade);
+    printf("Quantidade de mulheres entre 18 e 35 anos com olhos verdes e cabelos louros: %d\n", quantidade_mulheres_verdes_louros);
+
+    return 0;
+}
+
+// Uma loja tem 150 clientes cadastrados e deseja mandar uma correspondência a cada um deles anunciando um bônus especial. Escreva um algoritmo que leia o nome do
+cliente e o valor das suas compras no ano passado e calcule um bônus de 10% se o valor das compras for menor que 500.000 e de 15 %, caso contrário.
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int total_clientes = 150;
+    char nome[100];
+    float valor_compras, bonus;
+
+    for (int i = 0; i < total_clientes; i++) {
+        printf("Informe o nome do cliente %d: ", i + 1);
+        scanf(" %[^\n]", nome);  // Ler o nome com espaços em branco
+        printf("Informe o valor das compras no ano passado para %s: ", nome);
+        scanf("%f", &valor_compras);
+
+        if (valor_compras < 500000) {
+            bonus = valor_compras * 0.10;
+        } else {
+            bonus = valor_compras * 0.15;
+        }
+
+        printf("Bônus para %s: %.2f\n", nome, bonus);
+    }
+
+    return 0;
+}
+
+// . Faça um algoritmo que mostre os conceitos finais dos alunos de uma classe de 75 alunos, considerando (use o comando CASO): 
+a) os dados de cada aluno (número de matrícula e nota numérica final) serão fornecidos pelo usuário
+b) a tabela de conceitos segue abaixo:
+Nota Conceito
+de 0,0 a 4,9 D
+de 5,0 a 6,9 C
+de 7,0 a 8,9 B
+de 9,0 a 10,0 A
+
+#include <stdio.h>
+
+int main() {
+    int total_alunos = 75;
+    int matricula;
+    float nota;
+    char conceito;
+
+    for (int i = 0; i < total_alunos; i++) {
+        printf("Informe o número de matrícula do aluno %d: ", i + 1);
+        scanf("%d", &matricula);
+
+        printf("Informe a nota numérica final do aluno %d: ", i + 1);
+        scanf("%f", &nota);
+
+        if (nota >= 0.0 && nota <= 4.9) {
+            conceito = 'D';
+        } else if (nota >= 5.0 && nota <= 6.9) {
+            conceito = 'C';
+        } else if (nota >= 7.0 && nota <= 8.9) {
+            conceito = 'B';
+        } else if (nota >= 9.0 && nota <= 10.0) {
+            conceito = 'A';
+        } else {
+            printf("Nota inválida para o aluno %d. Forneça uma nota entre 0.0 e 10.0.\n", i + 1);
+            i--;  // Decrementa i para que o mesmo aluno insira a nota novamente
+            continue;
+        }
+
+        printf("Conceito do aluno %d (Matrícula %d): %c\n", i + 1, matricula, conceito);
+    }
+
+    return 0;
+}
+
+// Faça um algoritmo que lê um valor N inteiro e positivo e que calcula e escreve o fatorial de N (N!).
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    unsigned long long fatorial = 1;
+
+    printf("Digite um valor inteiro e positivo N: ");
+    scanf("%d", &n);
+
+    if (n < 0) {
+        printf("O fatorial não é definido para números negativos.\n");
+    } else {
+        for (int i = 1; i <= n; i++) {
+            fatorial *= i;
+        }
+        printf("%d! = %llu\n", n, fatorial);
+    }
+
+    return 0;
+}
+
+// Faça um algoritmo que leia 2 valores inteiros e positivos: X e Y. O algoritmo deve calcular e escrever a função potência X Y
+
+#include <stdio.h>
+
+int main() {
+    int X, Y;
+    long long resultado = 1;
+
+    printf("Digite o valor de X (base): ");
+    scanf("%d", &X);
+
+    printf("Digite o valor de Y (expoente): ");
+    scanf("%d", &Y);
+
+    if (X >= 0 && Y >= 0) {
+        for (int i = 0; i < Y; i++) {
+            resultado *= X;
+        }
+        printf("%d elevado a %d é igual a %lld\n", X, Y, resultado);
+    } else {
+        printf("X e Y devem ser inteiros positivos para calcular a potência.\n");
+    }
+
+    return 0;	
+}
+
+// Faça um algoritmo que calcule o fatorial de um número.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    unsigned long long fatorial = 1;
+
+    printf("Digite um número inteiro positivo: ");
+    scanf("%d", &	n);
+
+    if (n < 0) {
+        printf("O fatorial não está definido para números negativos.\n");
+    } else {
+        for (int i = 1; i <= n; i++) {
+            fatorial *= i;
+        }
+        printf("%d! = %llu\n", n, fatorial);
+    }
+
+    return 0;
+}
+
+// Faça um algoritmo que calcule a combinação e arranjo de um conjunto de tamanho N em subconjuntos de p elementos
+
+#include <stdio.h>
+
+unsigned long long fatorial(int n) {
+    if (n == 0) {
+        return 1;
+    } else {
+        unsigned long long result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+
+unsigned long long combinacao(int n, int p) {
+    return fatorial(n) / (fatorial(p) * fatorial(n - p));
+}
+
+unsigned long long arranjo(int n, int p) {
+    return fatorial(n) / fatorial(n - p);
+}
+
+int main() {
+    int n, p;
+
+    printf("Digite o valor de N: ");
+    scanf("%d", &n);
+    printf("Digite o valor de P: ");
+    scanf("%d", &p);
+
+    if (n < 0 || p < 0 || p > n) {
+        printf("Valores inválidos para N e P.\n");
+    } else {
+        unsigned long long combinacoes = combinacao(n, p);
+        unsigned long long arranjos = arranjo(n, p);
+
+        printf("Combinações C(%d, %d) = %llu\n", n, p, combinacoes);
+        printf("Arranjos A(%d, %d) = %llu\n", n, p, arranjos);
+    }
+
+    return 0;
+}
+
+// Faça um algoritmo que calcule os 20 primeiros números primos, dados os tres primeiros 1,2 e 3.
+
+#include <stdio.h>
+#include <stdbool.h>
+
+bool ehPrimo(int numero) {
+    if (numero <= 1) {
+        return false;
+    }
+    if (numero <= 3) {
+        return true;
+    }
+    if (numero % 2 == 0 || numero % 3 == 0) {
+        return false;
+    }
+    for (int i = 5; i * i <= numero; i += 6) {
+        if (numero % i == 0 || numero % (i + 2) == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int n = 20; // Número de primos a serem encontrados
+    int contador = 0;
+    int numero = 1;
+
+    printf("Os primeiros %d números primos são:\n", n);
+
+    while (contador < n) {
+        if (ehPrimo(numero)) {
+            printf("%d ", numero);
+            contador++;
+        }
+        numero++;
+    }
+
+    printf("\n");
+    return 0;
+}
+
+// Faça uma algoritmo que receba 2 numeros e divida o intervalo entre eles em 3 partes iguais. Obs. Faça a consistência para que os extremos não sejam iguais.
+
+#include <stdio.h>
+
+int main() {
+    double num1, num2;
+    
+    printf("Digite o primeiro número: ");
+    scanf("%lf", &num1);
+    
+    printf("Digite o segundo número (diferente do primeiro): ");
+    scanf("%lf", &num2);
+    
+    if (num1 == num2) {
+        printf("Os números não podem ser iguais. Tente novamente.\n");
+    } else {
+        double menor, maior, intervalo;
+        
+        if (num1 < num2) {
+            menor = num1;
+            maior = num2;
+        } else {
+            menor = num2;
+            maior = num1;
+        }
+        
+        intervalo = (maior - menor) / 3.0;
+        
+        printf("Divisão em três partes iguais:\n");
+        printf("Parte 1: %.2lf a %.2lf\n", menor, menor + intervalo);
+        printf("Parte 2: %.2lf a %.2lf\n", menor + intervalo, menor + 2 * intervalo);
+        printf("Parte 3: %.2lf a %.2lf\n", menor + 2 * intervalo, maior);
+    }
+    
+    return 0;
+}
+
+// Faça uma algoritmo que receba duas datas e retorne a diferença entre elas em dias
+ #include <stdio.h>
+#include <time.h>
+
+int main() {
+    struct tm data1, data2;
+    time_t t1, t2;
+
+    printf("Digite a primeira data (dd/mm/aaaa): ");
+    scanf("%d/%d/%d", &data1.tm_mday, &data1.tm_mon, &data1.tm_year);
+    data1.tm_mon -= 1; 
+
+    printf("Digite a segunda data (dd/mm/aaaa): ");
+    scanf("%d/%d/%d", &data2.tm_mday, &data2.tm_mon, &data2.tm_year);
+    data2.tm_mon -= 1; 
+
+    t1 = mktime(&data1);
+    t2 = mktime(&data2);
+
+    if (t1 == -1 || t2 == -1) {
+        printf("Datas inválidas!\n");
+        return 1;
+    }
+
+    double diferenca = difftime(t2, t1);
+    int diferenca_em_dias = (int)(diferenca / (60 * 60 * 24));
+
+    printf("A diferença entre as datas é de %d dias.\n", diferenca_em_dias);
+
+    return 0;
+}
